@@ -1,0 +1,1 @@
+UserParameter=bacula.jobs,/etc/bacula/bacula-to-zabbix/get-bacula-jobs-json.py

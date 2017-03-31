@@ -1,0 +1,6 @@
+USERNAME=guest
+PASSWORD=guest
+CONF=/etc/zabbix/zabbix_agentd.conf
+HOSTNAME=localhost
+NODE=rabbit@stage
+FILTER='{"durable": true}'
