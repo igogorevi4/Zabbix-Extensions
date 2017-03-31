@@ -1,4 +1,4 @@
-put the script into /usr/lib/zabbix/alertscripts/ - it described in zabbix-server configeuration file, parameter "AlertScriptsPath"
+put the script into /usr/lib/zabbix/alertscripts/ - it's described in zabbix-server configeuration file, parameter "AlertScriptsPath"
 chmod 755
 
 you can check how it does work:

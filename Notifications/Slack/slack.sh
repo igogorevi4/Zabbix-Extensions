@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Slack incoming web-hook URL and user name
-url='https://hooks.slack.com/services/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' # private chat with @yapozdnyakov
+url='https://hooks.slack.com/services/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' # private chat with @username
 username='Zabbix'
 
 ## Values received by this script:
