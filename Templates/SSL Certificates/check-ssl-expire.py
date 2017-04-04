@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# source https://gist.github.com/crashdump/5683952
+#
 
 __author__ = "Adrien Pujol - http://www.crashdump.fr/"
 __copyright__ = "Copyright 2013, Adrien Pujol"
