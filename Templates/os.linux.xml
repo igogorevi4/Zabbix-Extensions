@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-03-30T12:52:37Z</date>
+    <date>2017-04-05T07:11:34Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -312,12 +312,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Processor load (1 min average per core)</name>
+                    <name>Processor load (1 min average)</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>system.cpu.load[percpu,avg1]</key>
+                    <key>system.cpu.load[all,avg1]</key>
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
@@ -344,7 +344,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>The processor load is calculated as system CPU load divided by number of CPU cores.</description>
+                    <description>The processor load is calculated as system CPU load.</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -358,12 +358,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Processor load (5 min average per core)</name>
+                    <name>Processor load (5 min average)</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>system.cpu.load[percpu,avg5]</key>
+                    <key>system.cpu.load[all,avg5]</key>
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
@@ -390,7 +390,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>The processor load is calculated as system CPU load divided by number of CPU cores.</description>
+                    <description>The processor load is calculated as system CPU load.</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -404,12 +404,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>Processor load (15 min average per core)</name>
+                    <name>Processor load (15 min average)</name>
                     <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>system.cpu.load[percpu,avg15]</key>
+                    <key>system.cpu.load[all,avg15]</key>
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
@@ -436,7 +436,7 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>The processor load is calculated as system CPU load divided by number of CPU cores.</description>
+                    <description>The processor load is calculated as system CPU load.</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
@@ -2469,7 +2469,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.load[percpu,avg1].avg(5m)}&gt;{$LOAD_AVERAGE_AVG}</expression>
+            <expression>{Template OS Linux:system.cpu.load[all,avg1].avg(5m)}&gt;{$LOAD_AVERAGE_AVG}</expression>
             <name>Processor load is too high on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2581,7 +2581,7 @@
                     <type>0</type>
                     <item>
                         <host>Template OS Linux</host>
-                        <key>system.cpu.load[percpu,avg1]</key>
+                        <key>system.cpu.load[all,avg1]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -2593,7 +2593,7 @@
                     <type>0</type>
                     <item>
                         <host>Template OS Linux</host>
-                        <key>system.cpu.load[percpu,avg5]</key>
+                        <key>system.cpu.load[all,avg5]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -2605,7 +2605,7 @@
                     <type>0</type>
                     <item>
                         <host>Template OS Linux</host>
-                        <key>system.cpu.load[percpu,avg15]</key>
+                        <key>system.cpu.load[all,avg15]</key>
                     </item>
                 </graph_item>
             </graph_items>
