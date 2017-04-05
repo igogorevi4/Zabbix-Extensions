@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-05T07:11:34Z</date>
+    <date>2017-04-05T11:24:40Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -2222,16 +2222,16 @@
             </discovery_rules>
             <macros>
                 <macro>
+                    <macro>{$CPU_LOAD_AVERAGE}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
                     <macro>{$CPU_UTIL_IOWAIT}</macro>
                     <value>20</value>
                 </macro>
                 <macro>
                     <macro>{$FREE_DISK_SPACE}</macro>
                     <value>10</value>
-                </macro>
-                <macro>
-                    <macro>{$LOAD_AVERAGE_AVG}</macro>
-                    <value>5</value>
                 </macro>
                 <macro>
                     <macro>{$PROCESS_NUMBER}</macro>
@@ -2469,7 +2469,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.load[all,avg1].avg(5m)}&gt;{$LOAD_AVERAGE_AVG}</expression>
+            <expression>{Template OS Linux:system.cpu.load[all,avg1].avg(5m)}&gt;{$CPU_LOAD_AVERAGE}</expression>
             <name>Processor load is too high on {HOST.NAME}</name>
             <url/>
             <status>0</status>
