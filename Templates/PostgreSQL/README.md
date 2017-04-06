@@ -48,7 +48,10 @@ Include=/etc/zabbix/zabbix_agentd.d/
 ```
 # systemctl restart zabbix-agent.service
 ```
+- create zabbix user in postgres:
 
+	CREATE USER zabbix WITH PASSWORD 'qwerty12345' SUPERUSER;
+	
 - edit access rules in postgres [pg_hba.conf](http://www.postgresql.org/docs/9.3/static/auth-pg-hba-conf.html) (example for RHEL-based OS).
 - or add file .pgpass to zabbix homedir with content like so: 
 	
