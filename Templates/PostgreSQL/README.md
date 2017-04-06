@@ -50,6 +50,11 @@ Include=/etc/zabbix/zabbix_agentd.d/
 ```
 
 - edit access rules in postgres [pg_hba.conf](http://www.postgresql.org/docs/9.3/static/auth-pg-hba-conf.html) (example for RHEL-based OS).
+- or add file .pgpass to zabbix homedir with content like so: 
+	
+	host IP:port:database:postges user:password
+	127.0.0.1:5432:postgres:zabbix:qwerty12345
+
 ```
 # vi /var/lib/pgsql/9.3/data/pg_hba.conf
 host    db_production   postgres    127.0.0.1/32    trust
