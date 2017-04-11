@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-08-30T13:53:47Z</date>
+    <date>2017-04-11T12:15:59Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -25,12 +25,12 @@
             <items>
                 <item>
                     <name>Nginx: connections accepted per sec</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[accepts]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -68,12 +68,12 @@
                 </item>
                 <item>
                     <name>Nginx: connects active</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[active]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -111,12 +111,12 @@
                 </item>
                 <item>
                     <name>Nginx: connections handled per sec</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[handled]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -154,12 +154,12 @@
                 </item>
                 <item>
                     <name>Nginx: connections reading</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[reading]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -197,12 +197,12 @@
                 </item>
                 <item>
                     <name>Nginx: requests per sec</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[requests]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -240,12 +240,12 @@
                 </item>
                 <item>
                     <name>Nginx: connections waiting</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[waiting]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -283,12 +283,12 @@
                 </item>
                 <item>
                     <name>Nginx: connections writing</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[writing]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -326,12 +326,12 @@
                 </item>
                 <item>
                     <name>Nginx: Number of processes $1</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>proc.num[nginx]</key>
-                    <delay>180</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -372,11 +372,11 @@
             <macros>
                 <macro>
                     <macro>{$NGINX_CON_NUM}</macro>
-                    <value>200</value>
+                    <value>300</value>
                 </macro>
                 <macro>
                     <macro>{$NGINX_REQ_NUM}</macro>
-                    <value>200</value>
+                    <value>500</value>
                 </macro>
             </macros>
             <templates/>
