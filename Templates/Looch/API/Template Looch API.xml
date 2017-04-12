@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-03-31T13:56:30Z</date>
+    <date>2017-04-12T15:56:09Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -29,7 +29,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api.get.data[authorizations]</key>
+                    <key>looch.api.get.data[authorizations,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>0</trends>
@@ -72,7 +72,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api.get.data[users]</key>
+                    <key>looch.api.get.data[users,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>0</trends>
@@ -115,7 +115,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[authorizations,email]</key>
+                    <key>looch.api[authorizations,email,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -158,7 +158,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[authorizations,fb]</key>
+                    <key>looch.api[authorizations,fb,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -201,7 +201,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[authorizations,vk]</key>
+                    <key>looch.api[authorizations,vk,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -244,7 +244,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[users,active]</key>
+                    <key>looch.api[users,active,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -287,7 +287,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[users,email_confirmed]</key>
+                    <key>looch.api[users,email_confirmed,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -330,7 +330,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>looch.api[users,total]</key>
+                    <key>looch.api[users,total,{$API.IP},{$API.PORT}]</key>
                     <delay>3600</delay>
                     <history>30</history>
                     <trends>365</trends>
@@ -369,14 +369,23 @@
                 </item>
             </items>
             <discovery_rules/>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$API.IP}</macro>
+                    <value>172.16.20.135</value>
+                </macro>
+                <macro>
+                    <macro>{$API.PORT}</macro>
+                    <value>8000</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template Looch API:looch.api.get.data[authorizations].iregexp(OK,#2)}&lt;&gt;1</expression>
+            <expression>{Template Looch API:looch.api.get.data[authorizations,{$API.IP},{$API.PORT}].iregexp(OK,#2)}&lt;&gt;1</expression>
             <name>Cannot get data via Looch API: authorizations</name>
             <url/>
             <status>0</status>
@@ -386,7 +395,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Looch API:looch.api.get.data[users].iregexp(OK,#2)}&lt;&gt;1</expression>
+            <expression>{Template Looch API:looch.api.get.data[users,{$API.IP},{$API.PORT}].iregexp(OK,#2)}&lt;&gt;1</expression>
             <name>Cannot get data via Looch API: users</name>
             <url/>
             <status>0</status>
@@ -424,7 +433,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[authorizations,email]</key>
+                        <key>looch.api[authorizations,email,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -436,7 +445,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[authorizations,fb]</key>
+                        <key>looch.api[authorizations,fb,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -448,7 +457,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[authorizations,vk]</key>
+                        <key>looch.api[authorizations,vk,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -480,7 +489,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[users,active]</key>
+                        <key>looch.api[users,active,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -492,7 +501,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[users,email_confirmed]</key>
+                        <key>looch.api[users,email_confirmed,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -504,7 +513,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Looch API</host>
-                        <key>looch.api[users,total]</key>
+                        <key>looch.api[users,total,{$API.IP},{$API.PORT}]</key>
                     </item>
                 </graph_item>
             </graph_items>

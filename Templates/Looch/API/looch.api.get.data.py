@@ -6,9 +6,9 @@ import urllib2
 import sys
 
 service = sys.argv[1] # users, authorizations etc.
-ip = '172.16.20.135' # = sys.argv[3]
-port = '8000' # = sys.argv[4]
-resfile = '/tmp/api.looch.status.' + service + '.tmp'
+ip = sys.argv[2]
+port = sys.argv[3]
+resfile = '/tmp/api.looch.status.' + service + '.' + ip + '.tmp'
 
 # Make URL
 url = 'http://' + ip + ':' + port + '/monitoring/' + service
@@ -18,4 +18,4 @@ response = urllib2.urlopen(url)
 myfile = response.readline()
 
 with open(resfile, 'w') as f:
-				f.write(myfile)
+                f.write(myfile)

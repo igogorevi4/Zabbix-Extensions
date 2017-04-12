@@ -7,12 +7,14 @@ import sys
 
 item = sys.argv[2] # moniroted item
 service = sys.argv[1] # users, authorizations etc.
-ip = '172.16.20.135' # = sys.argv[3]
-port = '8000' # = sys.argv[4]
-resfile = '/tmp/api.looch.status.' + service + '.tmp'
+ip =  sys.argv[3]
+port = sys.argv[4]
+resfile = '/tmp/api.looch.status.' + service + '.' + ip + '.tmp'
 
 # Make URL
 url = 'http://' + ip + ':' + port + '/monitoring/' + service
+
+#print url
 
 def search_in_data(data, item, level_counter=0):
                 if level_counter > 4:
@@ -28,8 +30,10 @@ def search(data, item):
                                 return True
                 return False
 
+#print resfile
 
 with open(resfile) as f:
                 data = json.load(f)
+
 
 search_in_data(data, item)
