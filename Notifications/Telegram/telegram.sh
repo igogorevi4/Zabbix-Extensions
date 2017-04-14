@@ -14,7 +14,7 @@ BODY="$3"
 BOTKEY="12345:sdsadsa-dfdsf" #like this
 TIMEOUT="10"
 
-TEXT="<b>$THEME </b> $BODY " #<a href="https://zabbix.vispamedia.com">inline URL</a> "
+TEXT="<b>$THEME </b> $BODY "
 
 #PARSEMODE="markdown"
 PARSEMODE="html"
