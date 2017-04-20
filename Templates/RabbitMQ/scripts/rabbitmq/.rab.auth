@@ -3,4 +3,5 @@ PASSWORD=guest
 CONF=/etc/zabbix/zabbix_agentd.conf
 HOSTNAME=localhost
 NODE=rabbit@stage
+PORT=15672
 FILTER='{"durable": true}'
