@@ -57,13 +57,14 @@ Include=/etc/zabbix/zabbix_agentd.d/
 	
 	host IP:port:database:postges user:password
 	127.0.0.1:5432:postgres:zabbix:qwerty12345
+	127.0.0.1:5432:*:zabbix:qwerty12345 # for all DBs
 
 ```
 # vi /var/lib/pgsql/9.3/data/pg_hba.conf
 host    db_production   postgres    127.0.0.1/32    trust
 ```
 
-- after edit postgres service need reload
+- after edit postgres service need reload, only if you edited pg_hba. If you just added .pgpass, you need only restart zabbix-agent.service
 ```
 # systemctl reload postgresql.service
 ```

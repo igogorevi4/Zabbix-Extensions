@@ -1,13 +1,8 @@
 rabbitmq-zabbix
 =======================
+[![Build Status](https://travis-ci.org/jasonmcintosh/rabbitmq-zabbix.svg?branch=master)](https://travis-ci.org/jasonmcintosh/rabbitmq-zabbix)
 
 Template and checks to monitor rabbitmq queues and server via Zabbix.
-
-NOTICE!!!
-It has to set up fIlter for discovery rules on your RabbitMQ Server
-For example:
-	{#QUEUENAME} queue_report
-	{#VHOSTNAME} /
 
 ## SOURCE: 
 https://github.com/jasonmcintosh/rabbitmq-zabbix
@@ -28,20 +23,26 @@ Set of python scripts, zabbix template, and associated data to do autodiscovery
 
 
 ## CONFIGURATION:
-You may optionally create a .rab.auth file in the scripts/ directory. This file allows you to change default parameters. The format is `VARIABLE=value`, one per line:
+**Basic security recommendation**
+```
+When setting up a monitoring system, a general rule is that you should not to use guest.
+Guest is an admin account with full permissions.  A basic suggestion is to setup a read 
+only account who can access the management API.  Make sure that account is READ ONLY.  With 
+one caveat - the monitoring user should be able execute the aliveness-test api.  That might mean
+needing a slightly different set of permissions or pre-creation of the aliveness check queues.
+IF using guest a warning - it can only access RabbitMQ management via localhost so you will 
+need to set HOSTNAME=localhost
+```
+
+You should create a `.rab.auth` file in the `scripts/rabbitmq` directory. This file allows you to change default parameters. The format is `VARIABLE=value`, one per line:
 The default values are as follows:
 
-#    USERNAME=guest
-#    PASSWORD=guest
-#    CONF=/etc/zabbix/zabbix_agent.conf
+    USERNAME=guest
+    PASSWORD=guest
+    CONF=/etc/zabbix/zabbix_agent.conf
+    LOGLEVEL=INFO
+    LOGFILE=/var/log/zabbix/rabbitmq_zabbix.log
 
-	USERNAME=guest
-	PASSWORD=guest
-	CONF=/etc/zabbix/zabbix_agentd.conf
-	HOSTNAME=localhost # You host name https://github.com/jasonmcintosh/rabbitmq-zabbix/issues/36
-	NODE=rabbit@stage
-	FILTER='{"durable": true}'
-	
 You can also add a filter in this file to restrict which queues are monitored.
 This item is a JSON-encoded string. The format provides some flexibility for
 its use. You can either provide a single object or a list of objects to filter.
@@ -57,17 +58,16 @@ To only use the durable queues for a given vhost, the filter would be:
 To supply a list of queue names, the filter would be:
 `FILTER='[{"name": "mytestqueuename"}, {"name": "queue2"}]'`
 
+To debug any potential issues, make sure the log directory exists and can be written to by zabbix, then set LOGLEVEL=DEBUG in the .rab.auth file and you'll get quite verbose output
+
 ## Low level discovery of queues, including GLOBAL REGULAR EXPRESSIONS:
 `https://www.zabbix.com/documentation/3.0/manual/regular_expressions`
-The low level discovery, which is what determines what queues to be monitored, requires with the existing template that a filter be defined as a global regular expression.  
-You can modify the template to do it in other ways, e.g. with a host level macro (NOT TESTED), or override it per host.  
-Or any number of methods.  But without a filter, NO queues will be discovered, JUST server level items will show up, and your checks will fail.
+The low level discovery, which is what determines what queues to be monitored, requires with the existing template that a filter be defined as a global regular expression.  You can modify the template to do it in other ways, e.g. with a host level macro (NOT TESTED), or override it per host.  Or any number of methods.  But without a filter, NO queues will be discovered, JUST server level items will show up, and your checks will fail.
 
 At some point the filters may be improved to include regular expressions or "ignore these queues"
 
 ## CHANGES
-* Updated to use zabbix_sender to push data on request to an item request.  
-  This is similar to how the FromDual MySQL Zabbix stuff works and the concept was pulled from their templates.
+* Updated to use zabbix_sender to push data on request to an item request.  This is similar to how the FromDual MySQL Zabbix stuff works and the concept was pulled from their templates.
 * Updated the filters to handle a list of objects
 
 
@@ -82,6 +82,3 @@ https://github.com/jasonmcintosh/rabbitmq-zabbix
 * Python Scripts: https://github.com/kmcminn/rabbit-nagios
 * Base idea for the Rabbit template:  https://github.com/alfss/zabbix-rabbitmq
 * Also need to thank Lewis Franklin https://github.com/brolewis for his contributions!
-
-## Credits
-https://github.com/jasonmcintosh/rabbitmq-zabbix.git

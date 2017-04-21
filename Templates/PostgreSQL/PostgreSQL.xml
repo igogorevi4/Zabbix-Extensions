@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-03-29T12:11:24Z</date>
+    <date>2017-04-21T12:23:33Z</date>
     <groups>
         <group>
-            <name>Templates</name>
+            <name>Templates/Custom</name>
         </group>
     </groups>
     <templates>
@@ -14,7 +14,7 @@
             <description/>
             <groups>
                 <group>
-                    <name>Templates</name>
+                    <name>Templates/Custom</name>
                 </group>
             </groups>
             <applications>
@@ -463,7 +463,7 @@
                     <delay>300</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units>b</units>
@@ -506,7 +506,7 @@
                     <delay>300</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units>b</units>
@@ -549,7 +549,7 @@
                     <delay>300</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units>b</units>
@@ -592,7 +592,7 @@
                     <delay>300</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units>b</units>
@@ -936,7 +936,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1538,7 +1538,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
                     <units>ms</units>
@@ -1968,7 +1968,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
                     <units>s</units>
@@ -2054,7 +2054,7 @@
                     <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>0</status>
+                    <status>1</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -2206,7 +2206,7 @@
                         <conditions>
                             <condition>
                                 <macro>{#DBNAME}</macro>
-                                <value>(zabbix|db_.*)</value>
+                                <value/>
                                 <operator>8</operator>
                                 <formulaid>A</formulaid>
                             </condition>
@@ -2594,7 +2594,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                         <conditions>
                             <condition>
                                 <macro>{#TABLENAME}</macro>
-                                <value>^public.(products|customers|sessions)$</value>
+                                <value/>
                                 <operator>8</operator>
                                 <formulaid>A</formulaid>
                             </condition>
@@ -3670,7 +3670,7 @@ Disabled by default because may add too many items.</description>
                             <delay>900</delay>
                             <history>7</history>
                             <trends>365</trends>
-                            <status>0</status>
+                            <status>1</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
                             <units/>
