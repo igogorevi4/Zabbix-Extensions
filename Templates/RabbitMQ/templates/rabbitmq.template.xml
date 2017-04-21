@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-21T12:22:27Z</date>
+    <date>2017-04-21T12:34:24Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -980,7 +980,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>rabbitmq.discovery_queues</key>
-                    <delay>360</delay>
+                    <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -1005,13 +1005,13 @@
                         <conditions>
                             <condition>
                                 <macro>{#VHOSTNAME}</macro>
-                                <value>/</value>
+                                <value/>
                                 <operator>8</operator>
                                 <formulaid>B</formulaid>
                             </condition>
                             <condition>
                                 <macro>{#QUEUENAME}</macro>
-                                <value>queue_report</value>
+                                <value/>
                                 <operator>8</operator>
                                 <formulaid>A</formulaid>
                             </condition>
