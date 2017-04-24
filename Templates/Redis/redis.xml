@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-10-31T15:22:38Z</date>
+    <date>2017-04-21T12:38:30Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1837,7 +1837,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>redis.discovery</key>
-                    <delay>600</delay>
+                    <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
