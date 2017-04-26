@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-25T11:55:12Z</date>
+    <date>2017-04-26T09:15:25Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -33,7 +33,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>uHDD.discovery</key>
-                    <delay>60</delay>
+                    <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
