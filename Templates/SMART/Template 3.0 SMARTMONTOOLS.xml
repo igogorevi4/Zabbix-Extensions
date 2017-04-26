@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-26T09:45:35Z</date>
+    <date>2017-04-26T13:58:02Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -693,7 +693,7 @@
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].avg(1800)}&gt;50 and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].nodata(1800)}=0</expression>
+                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].avg(1800)}&gt;{$DISK.TEMPERATURE.AVG} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].nodata(1800)}=0</expression>
                             <name>[HDD.{#DISKNAME}] Disk temperature: {ITEM.LASTVALUE}</name>
                             <url/>
                             <status>0</status>
@@ -703,7 +703,7 @@
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&gt;65 and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&lt;100</expression>
+                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&gt;{$DISK.TEMPERATURE.HIGH} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&lt;100</expression>
                             <name>[HDD.{#DISKNAME}] Disk temperature: {ITEM.LASTVALUE}</name>
                             <url/>
                             <status>0</status>
@@ -807,7 +807,16 @@
                     <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$DISK.TEMPERATURE.AVG}</macro>
+                    <value>50</value>
+                </macro>
+                <macro>
+                    <macro>{$DISK.TEMPERATURE.HIGH}</macro>
+                    <value>65</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
