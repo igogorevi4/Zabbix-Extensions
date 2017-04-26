@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-26T09:31:59Z</date>
+    <date>2017-04-26T09:45:35Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -20,9 +20,6 @@
             <applications>
                 <application>
                     <name>S.M.A.R.T</name>
-                </application>
-                <application>
-                    <name>SMART: SSD</name>
                 </application>
             </applications>
             <items/>
