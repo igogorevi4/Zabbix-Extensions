@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-26T09:15:25Z</date>
+    <date>2017-04-26T09:31:59Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -19,7 +19,7 @@
             </groups>
             <applications>
                 <application>
-                    <name>SMART: HDD</name>
+                    <name>S.M.A.R.T</name>
                 </application>
                 <application>
                     <name>SMART: SSD</name>
@@ -104,7 +104,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -148,7 +148,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -192,7 +192,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -236,7 +236,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -280,10 +280,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
-                                </application>
-                                <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -327,10 +324,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
-                                </application>
-                                <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -374,7 +368,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -418,10 +412,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
-                                </application>
-                                <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -465,7 +456,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -509,10 +500,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
-                                </application>
-                                <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -556,7 +544,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -600,7 +588,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -644,7 +632,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: HDD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -688,7 +676,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>SMART: SSD</name>
+                                    <name>S.M.A.R.T</name>
                                 </application>
                             </applications>
                             <valuemap/>
