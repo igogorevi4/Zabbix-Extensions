@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-26T13:58:02Z</date>
+    <date>2017-04-26T15:08:21Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -598,7 +598,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>uHDD[{#DISKNAME},Temperature_Celsius]</key>
+                            <key>uHDD[{#DISKNAME},Temperature_Cel]</key>
                             <delay>600</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -693,7 +693,7 @@
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].avg(1800)}&gt;{$DISK.TEMPERATURE.AVG} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].nodata(1800)}=0</expression>
+                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].avg(1800)}&gt;{$DISK.TEMPERATURE.AVG} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].nodata(1800)}=0</expression>
                             <name>[HDD.{#DISKNAME}] Disk temperature: {ITEM.LASTVALUE}</name>
                             <url/>
                             <status>0</status>
@@ -703,7 +703,7 @@
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&gt;{$DISK.TEMPERATURE.HIGH} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Celsius].last(0)}&lt;100</expression>
+                            <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&gt;{$DISK.TEMPERATURE.HIGH} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&lt;100</expression>
                             <name>[HDD.{#DISKNAME}] Disk temperature: {ITEM.LASTVALUE}</name>
                             <url/>
                             <status>0</status>
