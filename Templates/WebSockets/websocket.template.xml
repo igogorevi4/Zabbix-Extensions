@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-05-03T14:44:41Z</date>
+    <date>2017-05-11T08:53:02Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -29,7 +29,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>web.socket.check</key>
+                    <key>web.socket.check[api.looch.tv/chat?user=1]</key>
                     <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
@@ -75,10 +75,10 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Websocket Check:web.socket.check.last()}&lt;&gt;200</expression>
+            <expression>{Websocket Check:web.socket.check[api.looch.tv/chat?user=1].last()}&lt;&gt;1</expression>
             <name>Check api.chat websocket</name>
             <url/>
-            <status>0</status>
+            <status>1</status>
             <priority>3</priority>
             <description/>
             <type>0</type>
