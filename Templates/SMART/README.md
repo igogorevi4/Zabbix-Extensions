@@ -11,17 +11,20 @@ This is the template for Zabbix providing SMART monitoring for HDD using smartct
 - test the script by running it. You should receive JSON object in the script output
 - add the following permissions into /etc/sudoers:
 ```
-zabbix ALL= (ALL) NOPASSWD: /usr/sbin/smartctl,/etc/zabbix/scripts/smartctl-disks-discovery.pl
+zabbix ALL= (ALL) NOPASSWD: /usr/sbin/smartctl,/etc/zabbix/scripts/smartctl-disks-discovery.pl,/etc/zabbix/scripts/smart.thresh.check.sh
 ```
 Add the following lines in zabbix_agentd.conf file:
 ```
 #############SMARTMON
-UserParameter=uHDD[*], sudo smartctl -A $1| grep -i "$2"| tail -1| awk '{print $10}'
+#UserParameter=uHDD[*], sudo smartctl -A $1| grep -i "$2"| tail -1| awk '{print $10}'
+UserParameter=uHDD[*], sudo smartctl -A $1| grep -i "$2"| tail -1| cut -c 88-|cut -f1 -d' '
 UserParameter=uHDD.model.[*],sudo smartctl -i $1 |grep -i "Device Model"| cut -f2 -d: |tr -d " "
 UserParameter=uHDD.sn.[*],sudo smartctl -i $1 |grep -i "Serial Number"| cut -f2 -d: |tr -d " "
 UserParameter=uHDD.health.[*],sudo smartctl -H $1 |grep -i "test"| cut -f2 -d: |tr -d " "
-UserParameter=uHDD.errorlog.[*],sudo smartctl -l error $1 | grep -i "ATA Error Count" | cut -f2 -d: |tr -d " "); if [[ ! -z "$a" ]]; then echo $a; else echo 0; fi
+#UserParameter=uHDD.errorlog.[*],sudo smartctl -l error $1 | grep -i "ATA Error Count" | cut -f2 -d: |tr -d " "); if [[ ! -z "$a" ]]; then echo $a; else echo 0; fi
+UserParameter=uHDD.errorlog.[*],sudo smartctl -l error $1 |grep -i "ATA Error Count"| cut -f2 -d: |tr -d " "
 UserParameter=uHDD.discovery,sudo /etc/zabbix/scripts/smartctl-disks-discovery.pl
+UserParameter=uHDD.thresh.check[*], sudo /etc/zabbix/scripts/smart.thresh.check.sh
 
 ```
 ###Building deb package
