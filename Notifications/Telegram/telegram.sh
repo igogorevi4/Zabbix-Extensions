@@ -3,7 +3,7 @@
 #	1.	create you own bot 
 #	2.	put bot key to this script
 #	3.	add this bot to your contact list
-#	4.	wgite any message to it
+#	4.	write any message to it
 #	5.	find out you chat_id using https://api.telegram.org/bot$BOTKEY/getUpdates
 #https://core.telegram.org/bots/api
 
