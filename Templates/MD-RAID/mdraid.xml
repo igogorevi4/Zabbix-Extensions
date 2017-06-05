@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-24T13:12:08Z</date>
+    <date>2017-06-05T08:25:26Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -241,7 +241,7 @@
                             <snmp_oid/>
                             <key>mdraid[{#MD_DEVICE},e,&quot;State&quot;]</key>
                             <delay>300</delay>
-                            <history>1</history>
+                            <history>3</history>
                             <trends>0</trends>
                             <status>0</status>
                             <value_type>4</value_type>
@@ -329,7 +329,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.read[{#MD_DEVICE},operations]</key>
                             <delay>60</delay>
-                            <history>7</history>
+                            <history>90</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -373,7 +373,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.read[{#MD_DEVICE},sectors]</key>
                             <delay>60</delay>
-                            <history>7</history>
+                            <history>90</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -417,7 +417,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.write[{#MD_DEVICE},operations]</key>
                             <delay>60</delay>
-                            <history>7</history>
+                            <history>90</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -461,7 +461,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.write[{#MD_DEVICE},sectors]</key>
                             <delay>60</delay>
-                            <history>7</history>
+                            <history>90</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>

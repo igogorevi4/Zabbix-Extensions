@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-02-03T10:33:02Z</date>
+    <date>2017-06-02T09:14:39Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1497,7 +1497,7 @@ last(&quot;docker.containers.running&quot;)</params>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>docker.discovery</key>
-                    <delay>3600</delay>
+                    <delay>43200</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -6194,7 +6194,7 @@ last(&quot;docker.containers.running&quot;)</params>
                             <expression>{Template App Docker:docker.container.stats[{#ZD_ID},pcpu].avg(300)}&gt;70</expression>
                             <name>Docker Container {#ZD_NAME} ({#ZD_ID}) CPU exceeding 70% for over 5 minutes</name>
                             <url/>
-                            <status>0</status>
+                            <status>1</status>
                             <priority>2</priority>
                             <description/>
                             <type>0</type>
@@ -6204,7 +6204,7 @@ last(&quot;docker.containers.running&quot;)</params>
                             <expression>{Template App Docker:docker.container.stats[{#ZD_ID},pcpu].avg(300)}&gt;80</expression>
                             <name>Docker Container {#ZD_NAME} ({#ZD_ID}) CPU exceeding 80% for over 5 minutes</name>
                             <url/>
-                            <status>0</status>
+                            <status>1</status>
                             <priority>3</priority>
                             <description/>
                             <type>0</type>
@@ -6221,7 +6221,7 @@ last(&quot;docker.containers.running&quot;)</params>
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App Docker:docker.container.inspect.boolean[{#ZD_ID},State.Running].last(0)}=0</expression>
+                            <expression>{Template App Docker:docker.container.inspect.boolean[{#ZD_ID},State.Running].max(600)}=0</expression>
                             <name>Docker Container {#ZD_NAME} ({#ZD_ID}) is not running</name>
                             <url/>
                             <status>0</status>
