@@ -18,5 +18,10 @@ echo "Python scripts copied to /usr/local/bin"
 echo "zabbix-agent configuration files copied to $CONFIG_PATH"
 echo "XML Zabbix Templates copied to /tmp"
 echo ""
-echo "You will need to restart the zabbix-agent and import the XML template on your Zabbix server"
+#echo "You will need to restart the zabbix-agent and import the XML template on your Zabbix server"
+
+# restarting zabbix-agent service
+echo "Restarting Zabbix Agent ... "
+service zabbix-agent restart && echo "Restarted"
+
 
