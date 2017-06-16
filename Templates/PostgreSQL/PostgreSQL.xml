@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-05-25T08:35:03Z</date>
+    <date>2017-06-16T13:42:57Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -4158,7 +4158,7 @@ Disabled by default because may add too many items.</description>
             <macros>
                 <macro>
                     <macro>{$PG_CACHE_HIT_RATIO}</macro>
-                    <value>90</value>
+                    <value>80</value>
                 </macro>
                 <macro>
                     <macro>{$PG_CHECKPOINTS_REQ_THRESHOLD}</macro>
