@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-06-16T13:42:57Z</date>
+    <date>2017-06-20T13:10:42Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template PostgreSQL</template>
-            <name>Template PostgreSQL</name>
+            <template>Template PostgreSQL Common</template>
+            <name>Template PostgreSQL Common</name>
             <description/>
             <groups>
                 <group>
@@ -936,7 +936,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>0</status>
+                    <status>1</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -1968,7 +1968,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>0</status>
+                    <status>1</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
                     <units>s</units>
@@ -2306,7 +2306,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template PostgreSQL:pgsql.db.size[{$PG_CONNINFO},{#DBNAME}].last()}&gt;{$PG_DATABASE_SIZE_THRESHOLD}</expression>
+                            <expression>{Template PostgreSQL Common:pgsql.db.size[{$PG_CONNINFO},{#DBNAME}].last()}&gt;{$PG_DATABASE_SIZE_THRESHOLD}</expression>
                             <name>PostgreSQL database {#DBNAME} to large on {HOSTNAME} (size={ITEM.LASTVALUE})}</name>
                             <url/>
                             <status>0</status>
@@ -2343,7 +2343,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template PostgreSQL</host>
+                                        <host>Template PostgreSQL Common</host>
                                         <key>pgsql.db.size[{$PG_CONNINFO},{#DBNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -2529,7 +2529,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template PostgreSQL:icmppingloss[{#HOTSTANDBY},10,100,,].last()}&gt;{$PG_SR_PACKET_LOSS}</expression>
+                            <expression>{Template PostgreSQL Common:icmppingloss[{#HOTSTANDBY},10,100,,].last()}&gt;{$PG_SR_PACKET_LOSS}</expression>
                             <name>PostgreSQL packet loss between {HOSTNAME} and {#HOTSTANDBY} to high ({ITEM.LASTVALUE})</name>
                             <url/>
                             <status>0</status>
@@ -2539,7 +2539,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template PostgreSQL:pgsql.streaming.lag.bytes[{$PG_CONNINFO},{#HOTSTANDBY}].last()}&gt;{$PG_SR_LAG_BYTE}</expression>
+                            <expression>{Template PostgreSQL Common:pgsql.streaming.lag.bytes[{$PG_CONNINFO},{#HOTSTANDBY}].last()}&gt;{$PG_SR_LAG_BYTE}</expression>
                             <name>PostgreSQL streaming lag between {HOSTNAME} and {#HOTSTANDBY} to high ({ITEM.LASTVALUE})</name>
                             <url/>
                             <status>0</status>
@@ -2549,7 +2549,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                             <dependencies/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template PostgreSQL:pgsql.streaming.lag.seconds[{$PG_CONNINFO_STANDBY},{#HOTSTANDBY}].last()}&gt;{$PG_SR_LAG_SEC}</expression>
+                            <expression>{Template PostgreSQL Common:pgsql.streaming.lag.seconds[{$PG_CONNINFO_STANDBY},{#HOTSTANDBY}].last()}&gt;{$PG_SR_LAG_SEC}</expression>
                             <name>PostgreSQL streaming lag between {HOSTNAME} and {#HOTSTANDBY} to high ({ITEM.LASTVALUE})</name>
                             <url/>
                             <status>0</status>
@@ -2586,7 +2586,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template PostgreSQL</host>
+                                        <host>Template PostgreSQL Common</host>
                                         <key>pgsql.streaming.lag.bytes[{$PG_CONNINFO},{#HOTSTANDBY}]</key>
                                     </item>
                                 </graph_item>
@@ -2598,1555 +2598,8 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template PostgreSQL</host>
+                                        <host>Template PostgreSQL Common</host>
                                         <key>pgsql.streaming.lag.seconds[{$PG_CONNINFO_STANDBY},{#HOTSTANDBY}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                    </graph_prototypes>
-                    <host_prototypes/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>PostgreSQL database tables discovery</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pgsql.table.discovery[{$PG_CONNINFO}]</key>
-                    <delay>3600</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions>
-                            <condition>
-                                <macro>{#TABLENAME}</macro>
-                                <value/>
-                                <operator>8</operator>
-                                <formulaid>A</formulaid>
-                            </condition>
-                        </conditions>
-                    </filter>
-                    <lifetime>1</lifetime>
-                    <description>PostgreSQL tables discovery. Use regular expressions to configure search.&#13;
-Disabled by default because may add too many items.</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>PostgreSQL: table {#TABLENAME} indexes size</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.index.size[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>900</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units>b</units>
-                            <delta>0</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>PostgreSQL all indexes size which belongs to a single table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL: table {#TABLENAME} size</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.size[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>900</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units>b</units>
-                            <delta>0</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>PostgreSQL single table size.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: analyzes</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.analyze_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>600</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of analyze operations performed on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: autoanalyzes</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.autoanalyze_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>600</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of autoanalyze operations performed on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: autovacuums</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.autovacuum_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>600</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of autovacuum operations performed on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: cache blocks hits per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.heap_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of buffer hits in this table</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: cache blocks read per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.heap_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of disk blocks read from this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: index blocks hit per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.idx_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of buffer hits in all indexes on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: index blocks read per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.idx_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of disk blocks read from all indexes on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: index scans</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.idx_scan[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of index scans initiated on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: tuples read per second by index scans</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.idx_tup_fetch[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of live rows fetched by index scans.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: dead rows</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_dead_tup[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Estimated number of dead rows.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: live rows</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_live_tup[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Estimated number of live rows.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: rows deleted per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_tup_del[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of rows deleted.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: rows HOT updated per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_tup_hot_upd[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of rows HOT updated (i.e., with no separate index update required).</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: rows inserted per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_tup_ins[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of rows inserted.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: rows updated per second</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.n_tup_upd[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of rows updated.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: sequential scans</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.seq_scan[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of sequential scans initiated on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: tuples read per second by sequential scans</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.seq_tup_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of live rows fetched by sequential scans.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: disk blocks hits per second from TOAST indexes</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.tidx_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of buffer hits in this table's TOAST table index (if any).</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: disk blocks read per second from TOAST indexes</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.tidx_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of disk blocks read from this table's TOAST table index (if any).</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: disk blocks hits per second from TOAST</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.toast_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of buffer hits in this table's TOAST table (if any).</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: disk blocks read per second from TOAST</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.toast_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>120</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of disk blocks read from this table's TOAST table (if any).</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL table {#TABLENAME} stat: vacuums</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.stat.vacuum_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>600</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>2</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Number of vacuum operations performed on this table.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>PostgreSQL: table {#TABLENAME} rows count</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>pgsql.table.tuples[{$PG_CONNINFO},{#TABLENAME}]</key>
-                            <delay>900</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>1</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <delta>0</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>PostgreSQL single table rows count.</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PostgreSQL</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <application_prototypes/>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes/>
-                    <graph_prototypes>
-                        <graph_prototype>
-                            <name>PostgreSQL table {#TABLENAME} maintenance</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.analyze_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>0000CC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.autoanalyze_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>2</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CC0000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.autovacuum_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>3</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CCCC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.vacuum_count[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PostgreSQL table {#TABLENAME} read stats</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.heap_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>000000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.heap_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>2</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>99FFFF</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.toast_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>3</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>FFFF99</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.tidx_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>4</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CCCC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.toast_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>5</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CCCC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.tidx_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>6</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>0000CC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.idx_blks_hit[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>7</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CC0000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.idx_blks_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PostgreSQL table {#TABLENAME} rows</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_live_tup[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>666666</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_dead_tup[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>2</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>0000CC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_tup_del[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>3</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CC0000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_tup_hot_upd[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>4</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CCCC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_tup_ins[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>5</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CCCC00</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.n_tup_upd[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PostgreSQL table {#TABLENAME} scans</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.idx_scan[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>000000</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.seq_scan[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>2</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>0000CC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.idx_tup_fetch[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>3</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CC0000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.stat.seq_tup_read[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PostgreSQL table {#TABLENAME} size</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>0000CC</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.size[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>CC0000</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.index.size[{$PG_CONNINFO},{#TABLENAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>2</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template PostgreSQL</host>
-                                        <key>pgsql.table.tuples[{$PG_CONNINFO},{#TABLENAME}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -4231,7 +2684,7 @@ Disabled by default because may add too many items.</description>
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.transactions.active[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.transactions.active[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
             <name>PostgreSQL active transaction to long on {HOSTNAME} (time={ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4241,7 +2694,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.cache.hit[{$PG_CONNINFO}].last()}&lt;{$PG_CACHE_HIT_RATIO}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.cache.hit[{$PG_CONNINFO}].last()}&lt;{$PG_CACHE_HIT_RATIO}</expression>
             <name>PostgreSQL cache hit ratio too low on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4251,7 +2704,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.dbstat.sum.deadlocks[{$PG_CONNINFO}].last()}&gt;{$PG_DEADLOCKS_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.dbstat.sum.deadlocks[{$PG_CONNINFO}].last()}&gt;{$PG_DEADLOCKS_THRESHOLD}</expression>
             <name>PostgreSQL deadlock occured on {HOSTNAME}</name>
             <url/>
             <status>0</status>
@@ -4261,7 +2714,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.connections.idle_in_transaction[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_IDLE_IN_TRANSACTION}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.connections.idle_in_transaction[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_IDLE_IN_TRANSACTION}</expression>
             <name>PostgreSQL idle in transaction connections to high on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>1</status>
@@ -4271,7 +2724,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.transactions.idle[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.transactions.idle[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
             <name>PostgreSQL idle transaction to long on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>1</status>
@@ -4281,7 +2734,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.connections.waiting[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_WAITING}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.connections.waiting[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_WAITING}</expression>
             <name>PostgreSQL number of waiting connections to high on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4291,7 +2744,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.dbstat.sum.conflicts[{$PG_CONNINFO}].last()}&gt;{$PG_CONFLICTS_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.dbstat.sum.conflicts[{$PG_CONNINFO}].last()}&gt;{$PG_CONFLICTS_THRESHOLD}</expression>
             <name>PostgreSQL recovery conflict occured on {HOSTNAME}</name>
             <url/>
             <status>0</status>
@@ -4301,7 +2754,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.bgwriter.checkpoints_req[{$PG_CONNINFO}].last()}&gt;{$PG_CHECKPOINTS_REQ_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.bgwriter.checkpoints_req[{$PG_CONNINFO}].last()}&gt;{$PG_CHECKPOINTS_REQ_THRESHOLD}</expression>
             <name>PostgreSQL required checkpoints occurs to frequently on {HOSTNAME}</name>
             <url/>
             <status>0</status>
@@ -4311,7 +2764,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.ping[{$PG_CONNINFO}].last()}&gt;{$PG_PING_THRESHOLD_MS}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.ping[{$PG_CONNINFO}].last()}&gt;{$PG_PING_THRESHOLD_MS}</expression>
             <name>PostgreSQL response to long on {HOSTNAME} ({ITEM.LASTVALUE}</name>
             <url/>
             <status>0</status>
@@ -4321,7 +2774,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:proc.num[{$PG_PROCESS_NAME}].last()}=0</expression>
+            <expression>{Template PostgreSQL Common:proc.num[{$PG_PROCESS_NAME}].last()}=0</expression>
             <name>PostgreSQL service not running on {HOSTNAME}</name>
             <url/>
             <status>0</status>
@@ -4331,7 +2784,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.uptime[{$PG_CONNINFO}].last()}&lt;{$PG_UPTIME_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.uptime[{$PG_CONNINFO}].last()}&lt;{$PG_UPTIME_THRESHOLD}</expression>
             <name>PostgreSQL service was restarted on {HOSTNAME} (uptime={ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4341,7 +2794,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.connections.total_pct[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_TOTAL_PCT}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.connections.total_pct[{$PG_CONNINFO}].last()}&gt;{$PG_CONN_TOTAL_PCT}</expression>
             <name>PostgreSQL total number of connections to high on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4351,7 +2804,7 @@ Disabled by default because may add too many items.</description>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template PostgreSQL:pgsql.transactions.waiting[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
+            <expression>{Template PostgreSQL Common:pgsql.transactions.waiting[{$PG_CONNINFO}].last()}&gt;{$PG_LONG_QUERY_THRESHOLD}</expression>
             <name>PostgreSQL waiting transaction to long on {HOSTNAME} ({ITEM.LASTVALUE})</name>
             <url/>
             <status>0</status>
@@ -4388,7 +2841,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.buffers_alloc[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4400,7 +2853,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.buffers_clean[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4412,7 +2865,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.buffers_backend[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4424,7 +2877,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.buffers_checkpoint[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4436,7 +2889,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.maxwritten_clean[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4448,7 +2901,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.buffers_backend_fsync[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4480,7 +2933,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.buffercache.total[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4492,7 +2945,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.buffercache.used[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4504,7 +2957,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.buffercache.clear[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4516,7 +2969,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.buffercache.dirty[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4548,7 +3001,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.checkpoints_timed[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4560,7 +3013,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.checkpoints_req[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4572,7 +3025,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.checkpoint_sync_time[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4584,7 +3037,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.bgwriter.checkpoint_write_time[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4616,7 +3069,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.total[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4628,7 +3081,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.active[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4640,7 +3093,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.idle[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4652,7 +3105,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.idle_in_transaction[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4664,7 +3117,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.total_pct[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4676,7 +3129,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.connections.waiting[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4708,7 +3161,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.ping[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4720,7 +3173,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.pgstatstatements.avg_query_time[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4752,7 +3205,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.blks_hit[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4764,7 +3217,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.blks_read[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4796,7 +3249,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.xact_commit[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4808,7 +3261,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.conflicts[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4820,7 +3273,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.deadlocks[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4832,7 +3285,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.xact_rollback[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4864,7 +3317,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.temp_bytes[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4876,7 +3329,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.temp_files[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4908,7 +3361,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.tup_deleted[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4920,7 +3373,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.tup_inserted[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4932,7 +3385,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.tup_updated[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4944,7 +3397,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.tup_fetched[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4956,7 +3409,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.dbstat.sum.tup_returned[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -4988,7 +3441,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.transactions.active[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5000,7 +3453,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.transactions.idle[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5012,7 +3465,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.transactions.prepared[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5024,7 +3477,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.transactions.waiting[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5056,7 +3509,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.cache.hit[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5068,7 +3521,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.uptime[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5100,7 +3553,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.wal.count[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>
@@ -5112,7 +3565,7 @@ Disabled by default because may add too many items.</description>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template PostgreSQL</host>
+                        <host>Template PostgreSQL Common</host>
                         <key>pgsql.wal.write[{$PG_CONNINFO}]</key>
                     </item>
                 </graph_item>

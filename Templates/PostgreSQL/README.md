@@ -1,80 +1,45 @@
-pgCayenne
-=========
-
 NOTICE!!!
 zabbix user in psql must be superuser
 after changing configuring psql sometimes it has to restart postgresql service (not reload)
  
 PostgreSQL monitoring with Zabbix.
 
-pgCayenne is a set of UserParameter for PostgreSQL monitoring, which consists of zabbix agent configuration and XML template for web monitoring. pgCayenne is using a built-in PostgreSQL system views and functions. pgCayenne no require redundant package dependencies, only psql - standart PostgreSQL client utility.
+based on pgCayenne 
 
-#### Features:
-- minimalistic configuration for monitored host, zabbix agent and pg_hba access;
-- no scripts, no .pgpass, no other redundant entities - only configuration for zabbix agent;
-- template-defined macros for configuring triggers and psql connection settings;
-- gathering information about connections, transaction time, database and table statistics, streaming replication lag, and more...
-- low level discovery for streaming standby servers, databases, tables.
+There are 2 templates:
+	* Common: common metrics and discovery databases
+	* DATABASENAME: tables autodiscovery
+	  So you need to copy database-template for each DB. Use template.preparing.sh script: 
+	  	./template.preparing.sh mydatabase 
+	  then upload to Zabbix gui
 
-#### Short how-to install and configure:
-- download repo with git clone;
-- copy postgresql.conf into zabbix agent config directory;
-- include postgresql.conf into zabbix agent main configuration (see Include option in zabbix_agentd.conf);
-- restart zabbix agent service;
-- edit postgresql service pg_hba.conf for allowing connections from zabbix agent;
-- import XML template into web monitoring and link template with target host;
-- edit tamplate macros parameters (set connections settings and other options);
-- add additional items into template if required.
+#### INSTALLATIONs
 
-#### Full how-to install and configure:
-- download repo with git clone:
 ```
-# git clone https://github.com/lesovsky/zabbix-extensions
-```
+git clone https://github.com/igogorevi4/Zabbix-Extensions.git
 
-- copy postgresql.conf into zabbix agent config directory (target directory maybe different in other OS):
-```
-# mkdir /etc/zabbix/zabbix_agentd.d/
-# cp files/postgresql/postgresql.conf /etc/zabbix/zabbix_agentd.d/
-```
+mkdir /etc/zabbix/zabbix_agentd.d/
 
-- include postgresql.conf into zabbix agent main configuration (add or uncomment Include option in zabbix_agentd.conf);
-```
-# vi /etc/zabbix/zabbix_agentd.conf
+cp files/postgresql/postgresql.conf /etc/zabbix/zabbix_agentd.d/
+
+nano /etc/zabbix/zabbix_agentd.conf
+
 Include=/etc/zabbix/zabbix_agentd.d/
-```
 
-- restart zabbix agent service:
+systemctl restart zabbix-agent.service
 ```
-# systemctl restart zabbix-agent.service
 ```
 - create zabbix user in postgres:
 
 	CREATE USER zabbix WITH PASSWORD 'qwerty12345' SUPERUSER;
 	
-- edit access rules in postgres [pg_hba.conf](http://www.postgresql.org/docs/9.3/static/auth-pg-hba-conf.html) (example for RHEL-based OS).
+- edit access rules in postgres [pg_hba.conf](http://www.postgresql.org/docs/9.6/static/auth-pg-hba-conf.html)
 - or add file .pgpass to zabbix homedir with content like so: 
 	
 	host IP:port:database:postges user:password
-	127.0.0.1:5432:postgres:zabbix:qwerty12345
 	127.0.0.1:5432:*:zabbix:qwerty12345 # for all DBs
 
 ```
-# vi /var/lib/pgsql/9.3/data/pg_hba.conf
-host    db_production   postgres    127.0.0.1/32    trust
-```
-
-- after edit postgres service need reload, only if you edited pg_hba. If you just added .pgpass, you need only restart zabbix-agent.service
-```
-# systemctl reload postgresql.service
-```
-
-- and now we can make simple check with zabbix_get
-```
-# zabbix_get -s 127.0.0.1 -k pgsql.ping['-h 127.0.0.1 -p 5432 -U postgres -d db_production']
-```
-If all things done correctly, we can see the responce time of postgresql service. Otherwise should check all steps again and zabbix agentd log.
-
 - import XML template into web monitoring and link template with target host;
 
 - edit template macros, go to the template page and open "Macros" tab:
@@ -131,10 +96,6 @@ PG_UPTIME_THRESHOLD - threshold for service uptime.
 - PostgreSQL streaming replication lag with standby - streaming replication between master and standby in bytes and seconds (per-standby).
 
 #### Known issues:
-- Supported PostgreSQL version is 9.2 and above.
-- PostgreSQL version 9.1 and later supported partially (procpid field in pg_stat_activity renamed to pid in 9.2).
+- Supported PostgreSQL version is 9.6
 - Strongly recommended install pg_buffercache and pg_stat_statements extensions into monitored database.
 - Table low-level discovery require manual specifies a list of tables to find, otherwise LLD generate many items (21 item per table).
-
-#### Todo:
-- ...
