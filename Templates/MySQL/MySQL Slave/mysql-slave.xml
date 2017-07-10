@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-12-22T10:32:54Z</date>
+    <date>2017-07-06T08:46:32Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -252,27 +252,37 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>({Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].time()}&lt;025500) or ({Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].time()}&gt;070500)</expression>
+            <expression>({Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].time()}&lt;005500) or ({Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Exec_Master_Log_Pos].time()}&gt;090500)</expression>
             <name>MySQL: Exec_Master_Log_Pos is not increasing</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
             <description/>
             <type>0</type>
-            <dependencies/>
+            <dependencies>
+                <dependency>
+                    <name>MySQL: Replication not running</name>
+                    <expression>(({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and {Template MySQL Slave:mysql.slave[Slave_IO_Running].time()}&lt;005500) or (({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and 090500&lt;{Template MySQL Slave:mysql.slave[Slave_IO_Running].time()})</expression>
+                </dependency>
+            </dependencies>
         </trigger>
         <trigger>
-            <expression>({Template MySQL Slave:mysql.slave[Relay_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].time()}&lt;025500) or ({Template MySQL Slave:mysql.slave[Relay_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].time()}&gt;070500)</expression>
+            <expression>({Template MySQL Slave:mysql.slave[Relay_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].time()}&lt;005500) or ({Template MySQL Slave:mysql.slave[Relay_Log_Pos].last()}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#2)}-{Template MySQL Slave:mysql.slave[Relay_Log_Pos].last(#3)}&lt;=0 and {Template MySQL Slave:mysql.slave[Relay_Log_Pos].time()}&gt;090500)</expression>
             <name>MySQL: Relay_Log_Pos is not increasing</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
             <description/>
             <type>0</type>
-            <dependencies/>
+            <dependencies>
+                <dependency>
+                    <name>MySQL: Replication not running</name>
+                    <expression>(({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and {Template MySQL Slave:mysql.slave[Slave_IO_Running].time()}&lt;005500) or (({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and 090500&lt;{Template MySQL Slave:mysql.slave[Slave_IO_Running].time()})</expression>
+                </dependency>
+            </dependencies>
         </trigger>
         <trigger>
-            <expression>(({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and {Template MySQL Slave:mysql.slave[Slave_IO_Running].time()}&lt;025500) or (({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and 070500&lt;{Template MySQL Slave:mysql.slave[Slave_IO_Running].time()})</expression>
+            <expression>(({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and {Template MySQL Slave:mysql.slave[Slave_IO_Running].time()}&lt;005500) or (({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and 090500&lt;{Template MySQL Slave:mysql.slave[Slave_IO_Running].time()})</expression>
             <name>MySQL: Replication not running</name>
             <url/>
             <status>0</status>
@@ -282,14 +292,19 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>({Template MySQL Slave:mysql.slave[Seconds_Behind_Master].min(#2)}&gt;0 and 025500&gt;{Template MySQL Slave:mysql.slave[Seconds_Behind_Master].time()}) or ({Template MySQL Slave:mysql.slave[Seconds_Behind_Master].time()}&gt;070500 and {Template MySQL Slave:mysql.slave[Seconds_Behind_Master].min(#2)}&gt;0)</expression>
+            <expression>({Template MySQL Slave:mysql.slave[Seconds_Behind_Master].min(#2)}&gt;0 and 005500&gt;{Template MySQL Slave:mysql.slave[Seconds_Behind_Master].time()}) or ({Template MySQL Slave:mysql.slave[Seconds_Behind_Master].time()}&gt;090500 and {Template MySQL Slave:mysql.slave[Seconds_Behind_Master].min(#2)}&gt;2)</expression>
             <name>MySQL: Replication slowed down</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
             <description/>
             <type>0</type>
-            <dependencies/>
+            <dependencies>
+                <dependency>
+                    <name>MySQL: Replication not running</name>
+                    <expression>(({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and {Template MySQL Slave:mysql.slave[Slave_IO_Running].time()}&lt;005500) or (({Template MySQL Slave:mysql.slave[Slave_IO_Running].regexp(Yes)}=0 or {Template MySQL Slave:mysql.slave[Slave_SQL_Running].regexp(Yes)}=0) and 090500&lt;{Template MySQL Slave:mysql.slave[Slave_IO_Running].time()})</expression>
+                </dependency>
+            </dependencies>
         </trigger>
     </triggers>
 </zabbix_export>

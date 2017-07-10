@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-06-22T12:00:44Z</date>
+    <date>2017-07-10T12:24:57Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -26,6 +26,52 @@
                 </application>
             </applications>
             <items>
+                <item>
+                    <name>RTMP: bandwidth of all active streams</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>nginx.rtmp.bandwidth</key>
+                    <delay>60</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>b/s</units>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Nginx</name>
+                        </application>
+                        <application>
+                            <name>RTMP</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
                 <item>
                     <name>RTMP: streams</name>
                     <type>0</type>
@@ -457,7 +503,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>Nginx-RTMP: bytes</name>
+            <name>Nginx-RTMP: bandwidth of all active streams</name>
             <width>900</width>
             <height>200</height>
             <yaxismin>0.0000</yaxismin>
@@ -476,26 +522,14 @@
             <graph_items>
                 <graph_item>
                     <sortorder>0</sortorder>
-                    <drawtype>2</drawtype>
-                    <color>F63100</color>
+                    <drawtype>1</drawtype>
+                    <color>9999FF</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Template Nginx-RTMP</host>
-                        <key>nginx.rtmp[bytes_in]</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>1</sortorder>
-                    <drawtype>2</drawtype>
-                    <color>2774A4</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Nginx-RTMP</host>
-                        <key>nginx.rtmp[bytes_out]</key>
+                        <key>nginx.rtmp.bandwidth</key>
                     </item>
                 </graph_item>
             </graph_items>
