@@ -24,7 +24,7 @@ class RabbitMQAPI(object):
         self.port = port
         self.conf = conf or '/etc/zabbix/zabbix_agentd.conf'
         self.senderhostname = senderhostname
-        self.protocol = protocol
+        self.protocol = protocol or 'http'
 
     def call_api(self, path):
         '''Call the REST API and convert the results into JSON.'''
@@ -33,6 +33,7 @@ class RabbitMQAPI(object):
         password_mgr.add_password(None, url, self.user_name, self.password)
         handler = urllib2.HTTPBasicAuthHandler(password_mgr)
         logging.debug('Issue a rabbit API call to get data on ' + path + " against " + self.host_name)
+	logging.debug('Full URL:' + url)
         return json.loads(urllib2.build_opener(handler).open(url).read())
 
     def list_queues(self, filters=None):
@@ -162,7 +163,7 @@ class RabbitMQAPI(object):
             logging.debug("SENDER_DATA: - %s %s" % (key,value))
             tmpfile.write("- %s %s\n" % (key, value))
         ##  This is a non standard bit of information added after the standard items
-        for item in ['deliver_get', 'publish']:
+        for item in ['deliver_get', 'publish', 'ack']:
             key = '"rabbitmq.queues[{0},queue_message_stats_{1},{2}]"'
             key = key.format(queue['vhost'], item, queue['name'])
             value = queue.get('message_stats', {}).get(item, 0)
@@ -201,6 +202,14 @@ class RabbitMQAPI(object):
           return self.call_api('overview').get('message_stats', {}).get('deliver_get_details', {}).get('rate',0)
         elif item == 'message_stats_publish':
           return self.call_api('overview').get('message_stats', {}).get('publish_details', {}).get('rate',0)
+        elif item == 'message_stats_ack':
+          return self.call_api('overview').get('message_stats', {}).get('ack_details', {}).get('rate',0)
+        elif item == 'message_count_total':
+          return self.call_api('overview').get('queue_totals', {}).get('messages',0)
+        elif item == 'message_count_ready':
+          return self.call_api('overview').get('queue_totals', {}).get('messages_ready',0)
+        elif item == 'message_count_unacknowledged':
+          return self.call_api('overview').get('queue_totals', {}).get('messages_unacknowledged',0)
         elif item == 'rabbitmq_version':
           return self.call_api('overview').get('rabbitmq_version', 'None')
         '''Return the value for a specific item in a node's details.'''
@@ -240,7 +249,8 @@ def main():
     logging.debug("Started trying to process data")
     api = RabbitMQAPI(user_name=options.username, password=options.password,
                       host_name=options.hostname, port=options.port,
-                      conf=options.conf, senderhostname=options.senderhostname)
+                      conf=options.conf, senderhostname=options.senderhostname, 
+		     protocol=options.protocol)
     if options.filters:
         try:
             filters = json.loads(options.filters)

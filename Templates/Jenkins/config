@@ -1,0 +1,5 @@
+#put in the directory with script
+hostname=hostname
+username=your_username
+password=your_password
+jenkins_url=https://jenkins_url

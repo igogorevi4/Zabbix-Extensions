@@ -42,6 +42,7 @@ The default values are as follows:
     CONF=/etc/zabbix/zabbix_agent.conf
     LOGLEVEL=INFO
     LOGFILE=/var/log/zabbix/rabbitmq_zabbix.log
+    PORT=15672
 
 You can also add a filter in this file to restrict which queues are monitored.
 This item is a JSON-encoded string. The format provides some flexibility for
@@ -59,6 +60,13 @@ To supply a list of queue names, the filter would be:
 `FILTER='[{"name": "mytestqueuename"}, {"name": "queue2"}]'`
 
 To debug any potential issues, make sure the log directory exists and can be written to by zabbix, then set LOGLEVEL=DEBUG in the .rab.auth file and you'll get quite verbose output
+
+### Macros
+
+You can adjust the values for the critical and warning levels for the amount of messages by changing the following macros:
+
+- RABBIT_QUEUE_MESSAGES_CRIT Defines the critical value for the amount of messages in a queue. It is set to 200000 messages per default
+- RABBIT_QUEUE_MESSAGES_WARN Defines the warning value for the amount of messages in a queue. It is set to 100000 messages per default
 
 ## Low level discovery of queues, including GLOBAL REGULAR EXPRESSIONS:
 `https://www.zabbix.com/documentation/3.0/manual/regular_expressions`
