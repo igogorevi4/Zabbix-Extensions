@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-07-13T15:28:27Z</date>
+    <date>2017-07-14T08:14:31Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -30,7 +30,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>jenkins.api.connection</key>
-                    <delay>1800</delay>
+                    <delay>300</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -74,7 +74,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>job.discovery</key>
-                    <delay>7200</delay>
+                    <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -108,7 +108,7 @@
                             <multiplier>0</multiplier>
                             <snmp_oid/>
                             <key>job.status[{#JOBNAME}]</key>
-                            <delay>60</delay>
+                            <delay>1800</delay>
                             <history>7</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -148,7 +148,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Jenkins Job:job.status[{#JOBNAME}].str(&quot;SUCCESS&quot;)}&lt;&gt;1</expression>
+                            <expression>{Jenkins Job:job.status[{#JOBNAME}].str(&quot;FAILURE&quot;)}=1</expression>
                             <name>Jenkins: {#JOBNAME} failed</name>
                             <url/>
                             <status>0</status>
