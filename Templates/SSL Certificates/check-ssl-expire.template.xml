@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-24T08:44:03Z</date>
+    <date>2017-08-07T10:05:20Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -105,7 +105,7 @@
         </trigger>
         <trigger>
             <expression>{Template SSL Cert Expire:ssl.cert.expire[{$SSL.SITE},{$SSL.PORT}].last(0)}&lt;30</expression>
-            <name>SSL certificate on {$SSL.SITE} expires in less than 30 days ({ITEM.VALUE} remaining)</name>
+            <name>SSL certificate on {$SSL.SITE} expires in less than 30 days ({ITEM.LASTVALUE} left)</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
@@ -120,7 +120,7 @@
         </trigger>
         <trigger>
             <expression>{Template SSL Cert Expire:ssl.cert.expire[{$SSL.SITE},{$SSL.PORT}].last(0)}&lt;50</expression>
-            <name>SSL certificate on {$SSL.SITE} expires in less than 50 days ({ITEM.VALUE} remaining)</name>
+            <name>SSL certificate on {$SSL.SITE} expires in less than 50 days ({ITEM.LASTVALUE} left)</name>
             <url/>
             <status>0</status>
             <priority>1</priority>
@@ -128,7 +128,7 @@
             <type>0</type>
             <dependencies>
                 <dependency>
-                    <name>SSL certificate on {$SSL.SITE} expires in less than 30 days ({ITEM.VALUE} remaining)</name>
+                    <name>SSL certificate on {$SSL.SITE} expires in less than 30 days ({ITEM.LASTVALUE} left)</name>
                     <expression>{Template SSL Cert Expire:ssl.cert.expire[{$SSL.SITE},{$SSL.PORT}].last(0)}&lt;30</expression>
                 </dependency>
             </dependencies>

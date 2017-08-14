@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2016-12-23T12:23:36Z</date>
+    <date>2017-08-14T07:14:42Z</date>
     <groups>
         <group>
-            <name>Templates</name>
+            <name>Templates/Custom</name>
         </group>
     </groups>
     <templates>
@@ -14,7 +14,7 @@
             <description/>
             <groups>
                 <group>
-                    <name>Templates</name>
+                    <name>Templates/Custom</name>
                 </group>
             </groups>
             <applications>
@@ -30,7 +30,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>vfs.file.size[/home/lounges/csgl/csgl-bets-latest.sql]</key>
-                    <delay>60</delay>
+                    <delay>86400</delay>
                     <history>14</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -73,7 +73,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>vfs.file.size[/home/lounges/csgl/csgl-trades-latest.sql]</key>
-                    <delay>60</delay>
+                    <delay>86400</delay>
                     <history>14</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -116,7 +116,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>vfs.file.size[/home/lounges/d2l/d2l-bets-latest.sql]</key>
-                    <delay>60</delay>
+                    <delay>86400</delay>
                     <history>14</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -159,7 +159,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>vfs.file.size[/home/lounges/d2l/d2l-trades-latest.sql]</key>
-                    <delay>60</delay>
+                    <delay>86400</delay>
                     <history>14</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -204,7 +204,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-bets-latest.sql].change()}&lt;=0</expression>
+            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-bets-latest.sql].change()}&lt;=0 and {Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-bets-latest.sql].change(#2)}&lt;=0</expression>
             <name>MySQL Backup: check csgl-bets backup collecting</name>
             <url/>
             <status>0</status>
@@ -214,7 +214,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-trades-latest.sql].change()}&lt;=0</expression>
+            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-trades-latest.sql].change()}&lt;=0 and {Template MySQL Backup:vfs.file.size[/home/lounges/csgl/csgl-trades-latest.sql].change(#2)}&lt;=0</expression>
             <name>MySQL Backup: check csgl-trades backup collecting</name>
             <url/>
             <status>0</status>
@@ -224,7 +224,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-bets-latest.sql].change()}&lt;=0</expression>
+            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-bets-latest.sql].change()}&lt;=0 and {Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-bets-latest.sql].change(#2)}&lt;=0</expression>
             <name>MySQL Backup: check d2l-bets backup collecting</name>
             <url/>
             <status>0</status>
@@ -234,7 +234,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-trades-latest.sql].change()}&lt;=0</expression>
+            <expression>{Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-trades-latest.sql].change()}&lt;=0 and {Template MySQL Backup:vfs.file.size[/home/lounges/d2l/d2l-trades-latest.sql].change(#2)}&lt;=0</expression>
             <name>MySQL Backup: check d2l-trades backup collecting</name>
             <url/>
             <status>0</status>
