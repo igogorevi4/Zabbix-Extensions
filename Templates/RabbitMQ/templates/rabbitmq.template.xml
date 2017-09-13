@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-07-12T11:06:01Z</date>
+    <date>2017-09-13T12:27:34Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -1585,7 +1585,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template RabbitMQ v3:rabbitmq[queues].last(0)}=1 or {Template RabbitMQ v3:rabbitmq[queues].nodata(5m)}=1</expression>
+            <expression>({Template RabbitMQ v3:rabbitmq[queues].last(0)}=1 and {Template RabbitMQ v3:rabbitmq[queues].last(#2)}=1) or {Template RabbitMQ v3:rabbitmq[queues].nodata(5m)}=1</expression>
             <name>Queue data status issue</name>
             <url/>
             <status>0</status>

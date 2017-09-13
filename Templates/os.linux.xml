@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-17T09:18:13Z</date>
+    <date>2017-09-13T13:21:55Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1519,7 +1519,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>7</lifetime>
+                    <lifetime>3</lifetime>
                     <description>Discovery of network interfaces as defined in global regular expression &quot;Network interfaces for discovery&quot;.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -1743,7 +1743,28 @@
                             <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
-                    <trigger_prototypes/>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template OS Linux:net.if.in[{#IFNAME}].last()}&gt;{$TRAFFIC_IN}</expression>
+                            <name>Incoming traffic via network interface {#IFNAME} is too high</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template OS Linux:net.if.out[{#IFNAME}].last()}&gt;{$TRAFFIC_OUT}</expression>
+                            <name>Outgoing traffic via network interface {#IFNAME} is too high</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
                     <graph_prototypes>
                         <graph_prototype>
                             <name>Daily network usage on {#IFNAME}</name>
@@ -1778,7 +1799,7 @@
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>Netowk data on {#IFNAME}</name>
+                            <name>Network data on {#IFNAME}</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -1798,7 +1819,7 @@
                                 <graph_item>
                                     <sortorder>0</sortorder>
                                     <drawtype>5</drawtype>
-                                    <color>0000AA</color>
+                                    <color>0000CC</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
@@ -1874,7 +1895,7 @@
                                 <graph_item>
                                     <sortorder>0</sortorder>
                                     <drawtype>5</drawtype>
-                                    <color>1A7C11</color>
+                                    <color>006600</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
@@ -1925,7 +1946,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>7</lifetime>
+                    <lifetime>3</lifetime>
                     <description>Discovery of file systems of different types as defined in global regular expression &quot;File systems for discovery&quot;.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -2155,7 +2176,7 @@
                             <name>Free disk space is less than {$FREE_DISK_SPACE}% on volume {#FSNAME}</name>
                             <url/>
                             <status>0</status>
-                            <priority>2</priority>
+                            <priority>4</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -2178,50 +2199,6 @@
                             <height>340</height>
                             <yaxismin>0.0000</yaxismin>
                             <yaxismax>100.0000</yaxismax>
-                            <show_work_period>0</show_work_period>
-                            <show_triggers>0</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>0</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
-                                    <color>00CC00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>2</type>
-                                    <item>
-                                        <host>Template OS Linux</host>
-                                        <key>vfs.fs.size[{#FSNAME},total]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>DD0000</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS Linux</host>
-                                        <key>vfs.fs.size[{#FSNAME},free]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>Disk space usage {#FSNAME}: pie</name>
-                            <width>600</width>
-                            <height>340</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>0.0000</yaxismax>
                             <show_work_period>0</show_work_period>
                             <show_triggers>0</show_triggers>
                             <type>2</type>
@@ -2270,16 +2247,24 @@
                     <value>5</value>
                 </macro>
                 <macro>
-                    <macro>{$FREE_DISK_SPACE}</macro>
+                    <macro>{$CPU_UTIL_IOWAIT}</macro>
                     <value>20</value>
                 </macro>
                 <macro>
-                    <macro>{$FREE_SWAP_PERCENT}</macro>
+                    <macro>{$FREE_DISK_SPACE}</macro>
                     <value>10</value>
                 </macro>
                 <macro>
                     <macro>{$PROCESS_NUMBER}</macro>
                     <value>300</value>
+                </macro>
+                <macro>
+                    <macro>{$TRAFFIC_IN}</macro>
+                    <value>500000000</value>
+                </macro>
+                <macro>
+                    <macro>{$TRAFFIC_OUT}</macro>
+                    <value>500000000</value>
                 </macro>
             </macros>
             <templates>
@@ -2462,7 +2447,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
+            <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;{$CPU_UTIL_IOWAIT}</expression>
             <name>Disk I/O is overloaded on {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2503,7 +2488,7 @@
         </trigger>
         <trigger>
             <expression>({Template OS Linux:system.swap.size[,total].last(0)}&lt;&gt;0)and&#13;
-({Template OS Linux:system.swap.size[,pfree].last(0)}&lt;{$FREE_SWAP_PERCENT})and({Template OS Linux:vm.memory.size[available].last(0)}&lt;200M)</expression>
+({Template OS Linux:system.swap.size[,pfree].last(0)}&lt;30)</expression>
             <name>Lack of free swap space on {HOST.NAME}</name>
             <url/>
             <status>0</status>
