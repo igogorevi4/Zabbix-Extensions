@@ -2,40 +2,28 @@
 # chmod 755 ...
 #!/bin/bash
 
-FILESTATUS=/tmp/status_nginx.tmp # chmod 777 ...
-NOWTIME=$(date +%s)
-if [ ! -f $FILESTATUS ]
-then wget http://localhost/nginx_status -O $FILESTATUS -o /dev/null
-fi
-FILETIME=$(stat -c %Y $FILESTATUS)
-#let "TIME = $NOWTIME - $FILETIME"
-TIME=$(($NOWTIME-$FILETIME))
-if [ "$TIME" -ge "20" ]
-then
-wget http://localhost/nginx_status -O $FILESTATUS -o /dev/null
-fi
 case "$1" in
 active)
-awk 'NR==1 {print $3}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep Active | awk ' {print $NF} '
 exit 0
 ;;
 accepts)
-awk 'NR==3 {print $1}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep accepts -A 1 | tail -n 1 | awk ' {print $1} '
 ;;
 handled)
-awk 'NR==3 {print $2}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep handled -A 1 | tail -n 1 | awk ' {print $2} '
 ;;
 requests)
-awk 'NR==3 {print $3}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep requests -A 1 | tail -n 1 | awk ' {print $3} '
 ;;
 reading)
-awk 'NR==4 {print $2}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep Reading | awk ' {print $2} '
 ;;
 writing)
-awk 'NR==4 {print $4}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep Writing | awk ' {print $4} '
 ;;
 waiting)
-awk 'NR==4 {print $6}' $FILESTATUS
+curl -s http://127.0.0.1/nginx_status | grep Waiting | awk ' {print $6} '
 ;;
 *)
 echo "ZBX_UNSUPPORTED"
@@ -44,3 +32,4 @@ exit 1
 esac
 
 exit 0
+
