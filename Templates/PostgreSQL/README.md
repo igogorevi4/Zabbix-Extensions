@@ -34,7 +34,7 @@ systemctl restart zabbix-agent.service
 	CREATE USER zabbix WITH PASSWORD 'qwerty12345' SUPERUSER;
 	
 - edit access rules in postgres [pg_hba.conf](http://www.postgresql.org/docs/9.6/static/auth-pg-hba-conf.html)
-	host    all             all             127.0.0.1/32            trust
+	host    all             zabbix             127.0.0.1/32            trust
 - or add file .pgpass to zabbix homedir with content like so: 
 	
 	host IP:port:database:postges user:password
