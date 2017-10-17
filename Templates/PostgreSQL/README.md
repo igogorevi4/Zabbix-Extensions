@@ -43,6 +43,12 @@ systemctl restart zabbix-agent.service
 - import XML template into web monitoring and link template with target host;
 
 - edit template macros, go to the template page and open "Macros" tab:
+
+- if you want to monitor buffers' and SQL statements executed by a server statistic, you need to add some extensions for all DBs you want observe:
+
+	CREATE EXTENSION pg_stat_statements;
+	CREATE EXTENSION pg_buffercache;
+
 PG_CONNINFO - connection settings for zabbix agent connections to the postgres service;
 
 PG_CONNINFO_STANDBY - connection settings for zabbix agent connections to the postgres service on standby servers, required for streaming replication lag monitoring;
