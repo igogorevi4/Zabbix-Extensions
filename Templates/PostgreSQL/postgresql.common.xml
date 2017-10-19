@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-06-20T13:10:42Z</date>
+    <date>2017-10-19T09:39:42Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -30,7 +30,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.buffers_alloc[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -73,7 +73,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.buffers_backend[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -116,7 +116,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.buffers_backend_fsync[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -159,7 +159,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.buffers_checkpoint[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -202,7 +202,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.buffers_clean[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -245,7 +245,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.checkpoints_req[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -288,7 +288,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.checkpoints_timed[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -331,7 +331,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.checkpoint_sync_time[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -374,7 +374,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.checkpoint_write_time[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -417,7 +417,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.bgwriter.maxwritten_clean[{$PG_CONNINFO}]</key>
-                    <delay>600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -460,7 +460,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.buffercache.clear[{$PG_CONNINFO}]</key>
-                    <delay>300</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -503,7 +503,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.buffercache.dirty[{$PG_CONNINFO}]</key>
-                    <delay>300</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -546,7 +546,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.buffercache.total[{$PG_CONNINFO}]</key>
-                    <delay>300</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -589,7 +589,7 @@
                     <multiplier>1</multiplier>
                     <snmp_oid/>
                     <key>pgsql.buffercache.used[{$PG_CONNINFO}]</key>
-                    <delay>300</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -632,7 +632,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.cache.hit[{$PG_CONNINFO}]</key>
-                    <delay>3600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -936,7 +936,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -976,7 +976,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.blks_hit[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1019,7 +1019,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.blks_read[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1062,7 +1062,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.conflicts[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1105,7 +1105,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.deadlocks[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1148,7 +1148,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.temp_bytes[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1191,7 +1191,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.temp_files[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1234,7 +1234,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.tup_deleted[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1277,7 +1277,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.tup_fetched[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1320,7 +1320,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.tup_inserted[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1363,7 +1363,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.tup_returned[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1406,7 +1406,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.tup_updated[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1449,7 +1449,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.xact_commit[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1492,7 +1492,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.dbstat.sum.xact_rollback[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1621,7 +1621,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.setting[{$PG_CONNINFO},fsync]</key>
-                    <delay>21600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1664,7 +1664,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.setting[{$PG_CONNINFO},full_page_writes]</key>
-                    <delay>21600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1707,7 +1707,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.setting[{$PG_CONNINFO},synchronous_commit]</key>
-                    <delay>21600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1750,7 +1750,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.streaming.count[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -1793,7 +1793,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.streaming.state[{$PG_CONNINFO}]</key>
-                    <delay>3600</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -1968,7 +1968,7 @@
                     <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>0</value_type>
                     <allowed_hosts/>
                     <units>s</units>
@@ -2051,10 +2051,10 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.wal.count[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
-                    <status>1</status>
+                    <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
@@ -2094,7 +2094,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.wal.write[{$PG_CONNINFO}]</key>
-                    <delay>120</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -2137,7 +2137,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>proc.num[{$PG_PROCESS_NAME}]</key>
-                    <delay>30</delay>
+                    <delay>60</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
