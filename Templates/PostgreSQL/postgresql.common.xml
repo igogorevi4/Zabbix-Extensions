@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-10-19T09:39:42Z</date>
+    <date>2017-10-19T13:35:07Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -2120,7 +2120,9 @@
                     <publickey/>
                     <privatekey/>
                     <port/>
-                    <description>WAL write in bytes,.</description>
+                    <description>WAL write in bytes,.&#13;
+&#13;
+collects at master server</description>
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>

@@ -1,8 +1,9 @@
 NOTICE!!!
 zabbix user in psql must be superuser
 after changing configuring psql sometimes it has to restart postgresql service (not reload)
- 
+
 PostgreSQL monitoring with Zabbix.
+This configurations was tested on postgres 9.6 and zabbix-server 3.0
 
 based on pgCayenne 
 
