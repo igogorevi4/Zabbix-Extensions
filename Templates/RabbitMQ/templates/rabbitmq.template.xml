@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-09-13T12:27:34Z</date>
+    <date>2017-11-29T12:40:25Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -1253,7 +1253,7 @@
                             <name>No queue consumer found and messages present on: {#VHOSTNAME}/{#QUEUENAME}</name>
                             <url/>
                             <status>0</status>
-                            <priority>3</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -1487,11 +1487,11 @@
             <macros>
                 <macro>
                     <macro>{$RABBIT_QUEUE_MESSAGES_CRIT}</macro>
-                    <value>10</value>
+                    <value>20</value>
                 </macro>
                 <macro>
                     <macro>{$RABBIT_QUEUE_MESSAGES_WARN}</macro>
-                    <value>5</value>
+                    <value>10</value>
                 </macro>
             </macros>
             <templates/>
@@ -1529,7 +1529,7 @@
             <name>Percent file descriptors greater than 75%</name>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>2</priority>
             <description/>
             <type>0</type>
             <dependencies/>
@@ -1554,7 +1554,7 @@
             <name>Percent memory use greater than 75%</name>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>2</priority>
             <description/>
             <type>0</type>
             <dependencies/>
@@ -1579,7 +1579,7 @@
             <name>Percent sockets in use greater than 75%</name>
             <url/>
             <status>0</status>
-            <priority>4</priority>
+            <priority>2</priority>
             <description/>
             <type>0</type>
             <dependencies/>
@@ -1589,7 +1589,7 @@
             <name>Queue data status issue</name>
             <url/>
             <status>0</status>
-            <priority>3</priority>
+            <priority>2</priority>
             <description/>
             <type>0</type>
             <dependencies>
@@ -1604,7 +1604,7 @@
             <name>RabbitMQ Cluster partition detected</name>
             <url/>
             <status>1</status>
-            <priority>3</priority>
+            <priority>2</priority>
             <description>RabbitMQ Cluster is in a BAD state!</description>
             <type>0</type>
             <dependencies/>

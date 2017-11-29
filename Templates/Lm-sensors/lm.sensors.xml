@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-17T14:28:19Z</date>
+    <date>2017-11-29T12:40:38Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -54,7 +54,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>1</lifetime>
+                    <lifetime>30</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -108,7 +108,7 @@
                             <name>{#CPUNAME} temperature is high on {HOST.NAME}. Current: {ITEM.VALUE} degrees</name>
                             <url/>
                             <status>0</status>
-                            <priority>4</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -118,7 +118,7 @@
                             <name>{#CPUNAME} temperature is very high on {HOST.NAME}. Current: {ITEM.VALUE} degrees</name>
                             <url/>
                             <status>0</status>
-                            <priority>5</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>

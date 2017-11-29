@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-26T15:08:21Z</date>
+    <date>2017-11-29T12:40:10Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -71,7 +71,7 @@
                             <multiplier>0</multiplier>
                             <snmp_oid/>
                             <key>uHDD.critical[{#DISKNAME}]</key>
-                            <delay>900</delay>
+                            <delay>7200</delay>
                             <history>7</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -599,7 +599,7 @@
                             <multiplier>0</multiplier>
                             <snmp_oid/>
                             <key>uHDD[{#DISKNAME},Temperature_Cel]</key>
-                            <delay>600</delay>
+                            <delay>900</delay>
                             <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
@@ -700,14 +700,19 @@
                             <priority>2</priority>
                             <description/>
                             <type>0</type>
-                            <dependencies/>
+                            <dependencies>
+                                <dependency>
+                                    <name>[HDD.{#DISKNAME}] Disk temperature is too high: {ITEM.LASTVALUE}</name>
+                                    <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&gt;{$DISK.TEMPERATURE.HIGH} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&lt;100</expression>
+                                </dependency>
+                            </dependencies>
                         </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&gt;{$DISK.TEMPERATURE.HIGH} and {Template SMARTMONTOOLS:uHDD[{#DISKNAME},Temperature_Cel].last(0)}&lt;100</expression>
-                            <name>[HDD.{#DISKNAME}] Disk temperature: {ITEM.LASTVALUE}</name>
+                            <name>[HDD.{#DISKNAME}] Disk temperature is too high: {ITEM.LASTVALUE}</name>
                             <url/>
                             <status>0</status>
-                            <priority>4</priority>
+                            <priority>3</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -727,7 +732,7 @@
                             <name>[HDD.{#DISKNAME}] SMART CRC Error Count too high: {ITEM.LASTVALUE}.</name>
                             <url>http://www.z-a-recovery.com/man-smart.htm</url>
                             <status>0</status>
-                            <priority>3</priority>
+                            <priority>2</priority>
                             <description>Low value of this attribute typically indicates that something is wrong with the connectors and/or cables. Disk-to-host transfers are protected by CRC error detection code when Ultra-DMA 66 or 100 is used. So if the data gets garbled between the disk and the host machine, the receiving controller senses this and the retransmission is initiated. Such a situation is called &quot;UDMA CRC error&quot;. Once the problem is rectified (typically by replacing a cable), the attribute value returns to the normal levels pretty quick.</description>
                             <type>0</type>
                             <dependencies/>
@@ -757,7 +762,7 @@
                             <name>[HDD.{#DISKNAME}] SMART Current_Pending_Sector has been registered</name>
                             <url/>
                             <status>0</status>
-                            <priority>3</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -797,7 +802,7 @@
                             <name>[HDD.{#DISKNAME}] SMART status: FAILED!</name>
                             <url/>
                             <status>0</status>
-                            <priority>3</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
