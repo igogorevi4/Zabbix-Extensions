@@ -1,1 +1,1 @@
-based on https://www.websocket.org/echo.html
+monitoring web-socket's connection
