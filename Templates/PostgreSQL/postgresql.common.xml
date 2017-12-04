@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-12-01T10:42:05Z</date>
+    <date>2017-12-04T13:18:50Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -2051,7 +2051,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.vacuum.stat.heap_blks_scanned[{$PG_CONNINFO}]</key>
-                    <delay>60</delay>
+                    <delay>3</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -2096,7 +2096,7 @@ pg_stat_progress_vacuum</description>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>pgsql.vacuum.stat.heap_blks_vacuumed[{$PG_CONNINFO}]</key>
-                    <delay>60</delay>
+                    <delay>3</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -2731,7 +2731,7 @@ host zabbix postgres 1.2.3.4/32 trust</description>
                 </macro>
                 <macro>
                     <macro>{$PG_CONN_WAITING}</macro>
-                    <value>0</value>
+                    <value>6</value>
                 </macro>
                 <macro>
                     <macro>{$PG_DATABASE_SIZE_THRESHOLD}</macro>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-06-16T14:59:28Z</date>
+    <date>2017-12-04T13:18:43Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -72,7 +72,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>pgsql.slave.runnig[{$PG_CONNINFO}]</key>
+                    <key>pgsql.slave.runnig</key>
                     <delay>60</delay>
                     <history>14</history>
                     <trends>0</trends>
@@ -123,8 +123,8 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template PostgreSQL Slave:pgsql.slave.runnig[{$PG_CONNINFO}].nodata(300)}=1 or &#13;
-{Template PostgreSQL Slave:pgsql.slave.runnig[{$PG_CONNINFO}].regexp([0-9]+.[0-9]+,#1)}&lt;&gt;0 or {Template PostgreSQL Slave:pgsql.slave.runnig[{$PG_CONNINFO}].regexp([0-9]+,#1)}&lt;&gt;0</expression>
+            <expression>{Template PostgreSQL Slave:pgsql.slave.runnig.nodata(300)}=1 or &#13;
+{Template PostgreSQL Slave:pgsql.slave.runnig.last()}=0</expression>
             <name>PSQL: Replication isn't working on {HOST.NAME}</name>
             <url/>
             <status>0</status>
