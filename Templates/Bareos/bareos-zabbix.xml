@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-12-14T13:10:29Z</date>
+    <date>2017-12-15T11:46:40Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Jenkins Job</template>
-            <name>Jenkins Job</name>
+            <template>Template Bareos</template>
+            <name>Template Bareos</name>
             <description/>
             <groups>
                 <group>
@@ -19,19 +19,19 @@
             </groups>
             <applications>
                 <application>
-                    <name>jenkins</name>
+                    <name>Bareos</name>
                 </application>
             </applications>
             <items>
                 <item>
-                    <name>Is Jenkins' API avaiable?</name>
+                    <name>Bareos Director is running</name>
                     <type>7</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>jenkins.api.connection</key>
-                    <delay>300</delay>
-                    <history>7</history>
+                    <key>proc.num[{$BAREOS.DIR}]</key>
+                    <delay>60</delay>
+                    <history>14</history>
                     <trends>365</trends>
                     <status>0</status>
                     <value_type>3</value_type>
@@ -60,7 +60,93 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>jenkins</name>
+                            <name>Bareos</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Bareos File is running</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>proc.num[{$BAREOS.FD}]</key>
+                    <delay>60</delay>
+                    <history>14</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Bareos</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Bareos Storage is running</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>proc.num[{$BAREOS.SD}]</key>
+                    <delay>60</delay>
+                    <history>14</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Bareos</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -69,11 +155,11 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>Jenkins' Job Discovery</name>
-                    <type>0</type>
+                    <name>Bereos' Jobs Discovery</name>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>jenkins.job.discovery</key>
+                    <key>bareos.jobs.discovery</key>
                     <delay>3600</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -102,14 +188,14 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Jenkins: {#JOBNAME}</name>
+                            <name>Job {#BAREOSJOBNAME} status</name>
                             <type>7</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>job.status[{#JOBNAME}]</key>
+                            <key>bareos.job[status,{#BAREOSJOBNAME}]</key>
                             <delay>1800</delay>
-                            <history>7</history>
+                            <history>14</history>
                             <trends>0</trends>
                             <status>0</status>
                             <value_type>4</value_type>
@@ -138,7 +224,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>jenkins</name>
+                                    <name>Bareos</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -148,11 +234,11 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Jenkins Job:job.status[{#JOBNAME}].str(&quot;FAILURE&quot;)}=1</expression>
-                            <name>Jenkins: {#JOBNAME} failed</name>
+                            <expression>{Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(e)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(f)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(E)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(B)}=1</expression>
+                            <name>Bareos: {#BAREOSJOBNAME} fihished with error</name>
                             <url/>
                             <status>0</status>
-                            <priority>1</priority>
+                            <priority>2</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
@@ -162,15 +248,48 @@
                     <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$BAREOS.DIR}</macro>
+                    <value>bareos-dir</value>
+                </macro>
+                <macro>
+                    <macro>{$BAREOS.FD}</macro>
+                    <value>bareos-fd</value>
+                </macro>
+                <macro>
+                    <macro>{$BAREOS.SD}</macro>
+                    <value>bareos-sd</value>
+                </macro>
+            </macros>
             <templates/>
             <screens/>
         </template>
     </templates>
     <triggers>
         <trigger>
-            <expression>{Jenkins Job:jenkins.api.connection.last()}&lt;&gt;0</expression>
-            <name>Jenkins' API is unavaiable</name>
+            <expression>{Template Bareos:proc.num[{$BAREOS.DIR}].last()}=0</expression>
+            <name>Bareos Director is DOWN in {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Bareos:proc.num[{$BAREOS.FD}].last()}=0</expression>
+            <name>Bareos File is DOWN in {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Bareos:proc.num[{$BAREOS.SD}].last()}=0</expression>
+            <name>Bareos Storage is DOWN in {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
