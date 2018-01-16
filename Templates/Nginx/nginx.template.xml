@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-11T12:15:59Z</date>
+    <date>2017-12-25T08:51:30Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -30,7 +30,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[accepts]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -73,7 +73,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[active]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -116,7 +116,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[handled]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -159,7 +159,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[reading]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -202,7 +202,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[requests]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -245,7 +245,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[waiting]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -288,7 +288,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>nginx[writing]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -331,7 +331,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>proc.num[nginx]</key>
-                    <delay>60</delay>
+                    <delay>120</delay>
                     <history>7</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -385,8 +385,8 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template Nginx:nginx[active].last(0)}&gt;{$NGINX_CON_NUM}</expression>
-            <name>Nginx: many active connections on {HOST.NAME}</name>
+            <expression>{Template Nginx:nginx[active].avg(300)}&gt;{$NGINX_CON_NUM}</expression>
+            <name>Nginx: many active connections on {HOST.NAME}: {ITEM.VALUE}</name>
             <url/>
             <status>0</status>
             <priority>2</priority>
@@ -395,8 +395,8 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Nginx:nginx[requests].avg(240)}&gt;{$NGINX_REQ_NUM}</expression>
-            <name>Nginx:  many requests on {HOST.NAME}</name>
+            <expression>{Template Nginx:nginx[requests].avg(300)}&gt;{$NGINX_REQ_NUM}</expression>
+            <name>Nginx:  many requests on {HOST.NAME}: {ITEM.VALUE}</name>
             <url/>
             <status>0</status>
             <priority>2</priority>
@@ -404,8 +404,8 @@
             <type>0</type>
             <dependencies>
                 <dependency>
-                    <name>Nginx:  too many requests on {HOST.NAME}</name>
-                    <expression>{Template Nginx:nginx[requests].avg(240)}&gt;{$NGINX_REQ_NUM}*1.5</expression>
+                    <name>Nginx:  too many requests on {HOST.NAME}: {ITEM.VALUE}</name>
+                    <expression>{Template Nginx:nginx[requests].avg(300)}&gt;{$NGINX_REQ_NUM}*1.5</expression>
                 </dependency>
             </dependencies>
         </trigger>
@@ -420,8 +420,8 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Nginx:nginx[requests].avg(240)}&gt;{$NGINX_REQ_NUM}*1.5</expression>
-            <name>Nginx:  too many requests on {HOST.NAME}</name>
+            <expression>{Template Nginx:nginx[requests].avg(300)}&gt;{$NGINX_REQ_NUM}*1.5</expression>
+            <name>Nginx:  too many requests on {HOST.NAME}: {ITEM.VALUE}</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
@@ -471,18 +471,6 @@
                     <item>
                         <host>Template Nginx</host>
                         <key>nginx[writing]</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>2</sortorder>
-                    <drawtype>0</drawtype>
-                    <color>EEEE00</color>
-                    <yaxisside>1</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Nginx</host>
-                        <key>nginx[reading]</key>
                     </item>
                 </graph_item>
                 <graph_item>

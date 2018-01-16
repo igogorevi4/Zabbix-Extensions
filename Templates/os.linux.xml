@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-09-13T13:21:55Z</date>
+    <date>2017-12-25T13:17:47Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1799,6 +1799,38 @@
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
+                            <name>Netowk data on {#IFNAME}</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>100.0000</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>1</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0.0000</percent_left>
+                            <percent_right>0.0000</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>5</drawtype>
+                                    <color>0000AA</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template OS Linux</host>
+                                        <key>net.if.total[{#IFNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
                             <name>Network data on {#IFNAME}</name>
                             <width>900</width>
                             <height>200</height>
@@ -2237,11 +2269,59 @@
                                 </graph_item>
                             </graph_items>
                         </graph_prototype>
+                        <graph_prototype>
+                            <name>Disk space usage {#FSNAME}: pie</name>
+                            <width>600</width>
+                            <height>340</height>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>0.0000</yaxismax>
+                            <show_work_period>0</show_work_period>
+                            <show_triggers>0</show_triggers>
+                            <type>2</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>1</show_3d>
+                            <percent_left>0.0000</percent_left>
+                            <percent_right>0.0000</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>C80000</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>2</type>
+                                    <item>
+                                        <host>Template OS Linux</host>
+                                        <key>vfs.fs.size[{#FSNAME},total]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>00C800</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template OS Linux</host>
+                                        <key>vfs.fs.size[{#FSNAME},free]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
                     </graph_prototypes>
                     <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
             <macros>
+                <macro>
+                    <macro>{$AVAILABLE_MEMORY}</macro>
+                    <value>100M</value>
+                </macro>
                 <macro>
                     <macro>{$CPU_LOAD_AVERAGE}</macro>
                     <value>5</value>
@@ -2447,6 +2527,16 @@
             <dependencies/>
         </trigger>
         <trigger>
+            <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
+            <name>Disk I/O is overloaded on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description>OS spends significant time waiting for I/O (input/output) operations. It could be indicator of performance issues with storage system.</description>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
             <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;{$CPU_UTIL_IOWAIT}</expression>
             <name>Disk I/O is overloaded on {HOST.NAME}</name>
             <url/>
@@ -2477,7 +2567,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:vm.memory.size[available].last(0)}&lt;20M</expression>
+            <expression>{Template OS Linux:vm.memory.size[available].last(0)}&lt;{$AVAILABLE_MEMORY}</expression>
             <name>Lack of available memory on server {HOST.NAME}</name>
             <url/>
             <status>0</status>
@@ -2494,6 +2584,27 @@
             <status>0</status>
             <priority>2</priority>
             <description>It probably means that the systems requires more physical memory.</description>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>({Template OS Linux:system.swap.size[,total].last(0)}&lt;&gt;0)and&#13;
+({Template OS Linux:system.swap.size[,pfree].last(0)}&lt;{$FREE_SWAP_PERCENT})and({Template OS Linux:vm.memory.size[available].last(0)}&lt;200M)</expression>
+            <name>Lack of free swap space on {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description>It probably means that the systems requires more physical memory.</description>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>({Template OS Linux:vm.memory.size[available].last(0)} - {Template OS Linux:vm.memory.size[available].last(#2)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#2)} - {Template OS Linux:vm.memory.size[available].last(#3)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#3)} - {Template OS Linux:vm.memory.size[available].last(#4)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#4)} - {Template OS Linux:vm.memory.size[available].last(#5)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#5)} - {Template OS Linux:vm.memory.size[available].last(#6)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#6)} - {Template OS Linux:vm.memory.size[available].last(#7)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#7)} - {Template OS Linux:vm.memory.size[available].last(#8)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#8)} - {Template OS Linux:vm.memory.size[available].last(#9)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#9)} - {Template OS Linux:vm.memory.size[available].last(#10)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#10)} - {Template OS Linux:vm.memory.size[available].last(#11)})&gt;0 and {Template OS Linux:vm.memory.size[available].last(0)}&lt;{$AVAILABLE_MEMORY}</expression>
+            <name>Memory leak is on server {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
             <type>0</type>
             <dependencies/>
         </trigger>

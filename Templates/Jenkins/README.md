@@ -1,5 +1,6 @@
 #Jenkins' job monitoring with LLD by Zabbix
 #was tested with Jenkins’ own user database
+#works if only there is no any folder
 
 #INSTALLATION:
 

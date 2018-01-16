@@ -1,6 +1,8 @@
 #!/bin/bash
 #thanks to source: http://wiki.enchtex.info/howto/zabbix/zabbix_lmsensors_monitoring
 
+#with some versions of devices, you have to run follows: sed -i 's/physical/package/g'
+
 export LC_ALL=""
 export LANG="en_US.UTF-8"
 #
