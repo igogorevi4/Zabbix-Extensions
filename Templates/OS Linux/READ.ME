@@ -1,0 +1,27 @@
+I rewrote network and filesystems' discovery rules because we work with docker and rancher a lot.
+
+
+You need to add several regular expressions via Zabbix GUI
+    * Administration > General> then select "Regular expression"
+    * There should be preinstalled regexp "File systems for discovery":
+
+        ^(btrfs|ext2|ext3|ext4|jfs|reiser|xfs|ffs|ufs|jfs|jfs2|vxfs|hfs|refs|ntfs|fat32|zfs)$	[Result is TRUE]
+
+    * Rewrite regexp "Network interfaces" as follows:
+
+        ^lo$	                        [Result is FALSE]
+        ^Software Loopback Interface	[Result is FALSE]
+        ^veth	                        [Result is FALSE]
+        ^docker	                        [Result is FALSE]
+        ^br	                            [Result is FALSE]
+
+    * Add new one "Docker filesystems discovery":
+
+        docker	                        [Result is FALSE]
+
+    * ... and another one "Rancher filesystems discovery":
+
+       	rancher                         [Result is FALSE]
+
+And then import os.linux.xml to your own Zabbix
+    Filter in "Mounted filesystem discovery" was set up as (A and B) and C

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-12-25T13:17:47Z</date>
+    <date>2018-01-17T13:07:43Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1519,7 +1519,7 @@
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>3</lifetime>
+                    <lifetime>1</lifetime>
                     <description>Discovery of network interfaces as defined in global regular expression &quot;Network interfaces for discovery&quot;.</description>
                     <item_prototypes>
                         <item_prototype>
@@ -1967,18 +1967,30 @@
                     <privatekey/>
                     <port/>
                     <filter>
-                        <evaltype>0</evaltype>
+                        <evaltype>1</evaltype>
                         <formula/>
                         <conditions>
                             <condition>
                                 <macro>{#FSTYPE}</macro>
                                 <value>@File systems for discovery</value>
                                 <operator>8</operator>
+                                <formulaid>C</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>@Docker filesystems discovery</value>
+                                <operator>8</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>@Rancher filesystems discovery</value>
+                                <operator>8</operator>
                                 <formulaid>A</formulaid>
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>3</lifetime>
+                    <lifetime>1</lifetime>
                     <description>Discovery of file systems of different types as defined in global regular expression &quot;File systems for discovery&quot;.</description>
                     <item_prototypes>
                         <item_prototype>
