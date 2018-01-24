@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2018-01-17T13:07:43Z</date>
+    <date>2018-01-23T12:56:24Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1799,38 +1799,6 @@
                             </graph_items>
                         </graph_prototype>
                         <graph_prototype>
-                            <name>Netowk data on {#IFNAME}</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>0</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>0000AA</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS Linux</host>
-                                        <key>net.if.total[{#IFNAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
                             <name>Network data on {#IFNAME}</name>
                             <width>900</width>
                             <height>200</height>
@@ -2539,16 +2507,6 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;20</expression>
-            <name>Disk I/O is overloaded on {HOST.NAME}</name>
-            <url/>
-            <status>0</status>
-            <priority>2</priority>
-            <description>OS spends significant time waiting for I/O (input/output) operations. It could be indicator of performance issues with storage system.</description>
-            <type>0</type>
-            <dependencies/>
-        </trigger>
-        <trigger>
             <expression>{Template OS Linux:system.cpu.util[,iowait].avg(5m)}&gt;{$CPU_UTIL_IOWAIT}</expression>
             <name>Disk I/O is overloaded on {HOST.NAME}</name>
             <url/>
@@ -2613,6 +2571,16 @@
         <trigger>
             <expression>({Template OS Linux:vm.memory.size[available].last(0)} - {Template OS Linux:vm.memory.size[available].last(#2)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#2)} - {Template OS Linux:vm.memory.size[available].last(#3)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#3)} - {Template OS Linux:vm.memory.size[available].last(#4)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#4)} - {Template OS Linux:vm.memory.size[available].last(#5)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#5)} - {Template OS Linux:vm.memory.size[available].last(#6)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#6)} - {Template OS Linux:vm.memory.size[available].last(#7)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#7)} - {Template OS Linux:vm.memory.size[available].last(#8)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#8)} - {Template OS Linux:vm.memory.size[available].last(#9)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#9)} - {Template OS Linux:vm.memory.size[available].last(#10)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#10)} - {Template OS Linux:vm.memory.size[available].last(#11)})&gt;0 and {Template OS Linux:vm.memory.size[available].last(0)}&lt;{$AVAILABLE_MEMORY}</expression>
             <name>Memory leak is on server {HOST.NAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>({Template OS Linux:vm.memory.size[available].last(0)} - {Template OS Linux:vm.memory.size[available].last(#2)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#2)} - {Template OS Linux:vm.memory.size[available].last(#3)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#3)} - {Template OS Linux:vm.memory.size[available].last(#4)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#4)} - {Template OS Linux:vm.memory.size[available].last(#5)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#5)} - {Template OS Linux:vm.memory.size[available].last(#6)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#6)} - {Template OS Linux:vm.memory.size[available].last(#7)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#7)} - {Template OS Linux:vm.memory.size[available].last(#8)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#8)} - {Template OS Linux:vm.memory.size[available].last(#9)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#9)} - {Template OS Linux:vm.memory.size[available].last(#10)})&gt;0 and ({Template OS Linux:vm.memory.size[available].last(#10)} - {Template OS Linux:vm.memory.size[available].last(#11)})&gt;0 and {Template OS Linux:vm.memory.size[available].last(0)}&lt;{$AVAILABLE_MEMORY}</expression>
+            <name>Memory leak on server {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>3</priority>

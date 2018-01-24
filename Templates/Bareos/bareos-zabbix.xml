@@ -155,7 +155,7 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>Bereos' Jobs Discovery</name>
+                    <name>Bareos' Jobs Discovery</name>
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
