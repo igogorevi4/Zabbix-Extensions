@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-06-05T08:25:26Z</date>
+    <date>2018-02-05T08:10:51Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -329,7 +329,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.read[{#MD_DEVICE},operations]</key>
                             <delay>60</delay>
-                            <history>90</history>
+                            <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -373,7 +373,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.read[{#MD_DEVICE},sectors]</key>
                             <delay>60</delay>
-                            <history>90</history>
+                            <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -417,7 +417,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.write[{#MD_DEVICE},operations]</key>
                             <delay>60</delay>
-                            <history>90</history>
+                            <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -461,7 +461,7 @@
                             <snmp_oid/>
                             <key>vfs.dev.write[{#MD_DEVICE},sectors]</key>
                             <delay>60</delay>
-                            <history>90</history>
+                            <history>7</history>
                             <trends>365</trends>
                             <status>0</status>
                             <value_type>0</value_type>
@@ -500,11 +500,21 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template MD RAID:mdraid[{#MD_DEVICE},e,&quot;State&quot;].regexp(&quot;(degraded|resyncing|recovering|Not Started)&quot;)}=1</expression>
-                            <name>{#MD_DEVICE} RAID State</name>
+                            <expression>{Template MD RAID:mdraid[{#MD_DEVICE},e,&quot;State&quot;].regexp(&quot;(degraded|Not Started)&quot;)}=1</expression>
+                            <name>{#MD_DEVICE} RAID State: {ITEM.VALUE}</name>
                             <url/>
                             <status>0</status>
                             <priority>3</priority>
+                            <description/>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template MD RAID:mdraid[{#MD_DEVICE},e,&quot;State&quot;].regexp(&quot;(resyncing|recovering)&quot;)}=1</expression>
+                            <name>{#MD_DEVICE} RAID State: {ITEM.VALUE}</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
                             <description/>
                             <type>0</type>
                             <dependencies/>
