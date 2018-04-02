@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-12-15T11:46:40Z</date>
+    <date>2018-04-02T11:01:41Z</date>
     <groups>
         <group>
             <name>Templates/Custom</name>
@@ -236,6 +236,16 @@
                         <trigger_prototype>
                             <expression>{Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(e)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(f)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(E)}=1 or {Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(B)}=1</expression>
                             <name>Bareos: {#BAREOSJOBNAME} fihished with error</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description/>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Bareos:bareos.job[status,{#BAREOSJOBNAME}].regexp(c,#2)}=1</expression>
+                            <name>Bareos: {#BAREOSJOBNAME} is waiting for client resource</name>
                             <url/>
                             <status>0</status>
                             <priority>2</priority>
